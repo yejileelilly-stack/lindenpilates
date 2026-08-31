@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linden Pilates · Singapore</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --ink:#2B2B2A;--ink2:#3D5548;--taupe:#628474;--taupe2:#8AA696;
+  --stone:#CBD3CD;--linen:#E0E6E3;--cream:#E0E6E3;--white:#FFFFFF;
+  --warm:#E0E6E3;--text:#2B2B2A;--soft:#5B5B57;--muted:#8A8A85;--border:#CBD3CD;
+  --green:#628474;--green-light:#E8EFEA;--red:#B84040;--red-light:#F5ECEC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* ── SimplyBook popup modal ─────────────────────────────────────────────── */
+.sb-modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(43,43,42,.6);align-items:center;justify-content:center;padding:24px;}
+.sb-modal-overlay.open{display:flex;}
+.sb-modal-box{background:#fff;width:100%;max-width:960px;height:90vh;max-height:800px;position:relative;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.sb-modal-close{position:absolute;top:10px;right:14px;z-index:2;background:rgba(43,43,42,.85);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;}
+.sb-modal-close:hover{background:#000;}
+.sb-modal-box iframe{width:100%;height:100%;border:none;display:block;}
+@media (max-width:640px){.sb-modal-box{height:95vh;}}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);font-weight:300;line-height:1.7;}
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:rgba(224,230,227,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo-slot{grid-column:2;display:flex;justify-content:center;align-items:center;}
+.nav-side-left{grid-column:1;display:flex;justify-content:flex-start;}
+.nav-side-right{grid-column:3;display:flex;justify-content:flex-end;}
+.nav-brand-main{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);letter-spacing:1.5px;font-weight:400;display:block;}
+.nav-logo-img{height:64px;width:auto;display:block;}
+.nav-logo-placeholder{height:64px;padding:0 26px;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--stone);border-radius:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links-pages{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);text-decoration:none;transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--ink);}
+.nav-actions{display:flex;gap:12px;align-items:center;}
+.nav-cta{padding:9px 20px;border:1.5px solid var(--taupe);color:var(--white);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--taupe);white-space:nowrap;}
+.nav-cta:hover{background:var(--ink2);border-color:var(--ink2);}
+.nav-user{display:flex;align-items:center;gap:10px;}
+.nav-user-name{font-size:12px;color:var(--soft);}
+.nav-logout{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
+.nav-logout:hover{color:var(--red);}
+
+/* ── HERO SECTION (photo + description + sessions) ────────────────────────── */
+.hero{min-height:100vh;background:var(--warm);display:flex;flex-direction:column;padding-top:80px;}
+
+/* top split: text left, photo right */
+.hero-main{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:560px;}
+.hero-left{padding:72px 60px 48px;display:flex;flex-direction:column;justify-content:center;}
+.hero-tag{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:24px;}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--taupe);}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,4.8vw,76px);font-weight:300;color:var(--ink);line-height:1.06;margin-bottom:24px;}
+.hero-h1 em{font-style:italic;color:var(--taupe);}
+.hero-desc{font-size:15px;color:var(--soft);line-height:2;max-width:400px;margin-bottom:12px;}
+.hero-desc strong{color:var(--ink);font-weight:500;}
+.hero-studio-info{font-size:12px;color:var(--muted);line-height:2.1;margin-bottom:36px;}
+.hero-studio-info strong{color:var(--taupe);font-weight:400;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-fill{padding:14px 40px;background:var(--ink);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.btn-fill:hover{background:var(--ink2);}
+.btn-line{padding:14px 32px;background:transparent;border:1.5px solid var(--border);color:var(--soft);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-line:hover{border-color:var(--ink);color:var(--ink);}
+
+/* studio photo */
+.hero-right{position:relative;overflow:hidden;background:var(--linen);}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.hero-photo-ph{width:100%;height:100%;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.hero-photo-ph svg{opacity:.25;}
+.hero-photo-ph span{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+
+/* session cards — full width below the split */
+.hero-sessions{background:var(--cream);border-top:1px solid var(--border);}
+.sess-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+.sess-card{padding:40px 36px;transition:background .3s;display:flex;flex-direction:column;border-right:1px solid var(--border);}
+.sess-card:last-child{border-right:none;}
+.sess-card:hover{background:var(--ink);}
+.sess-card:hover .sc-tag{color:var(--stone)!important;}
+.sess-card:hover .sc-name{color:var(--white)!important;}
+.sess-card:hover .sc-desc,.sess-card:hover .sc-sub{color:var(--stone)!important;opacity:.75;}
+.sess-card:hover .sc-price{color:var(--white)!important;}
+.sess-card:hover .sc-div{background:rgba(198,184,170,.25)!important;}
+.sess-card:hover .sc-btn{color:var(--white)!important;border-color:rgba(255,255,255,0.4)!important;}
+.sc-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:14px;display:block;transition:color .3s;}
+.sc-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink);margin-bottom:10px;transition:color .3s;}
+.sc-div{width:28px;height:1px;background:var(--border);margin-bottom:12px;transition:background .3s;}
+.sc-desc{font-size:13px;color:var(--soft);line-height:1.9;margin-bottom:20px;flex:1;transition:color .3s;}
+.sc-price{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);transition:color .3s;}
+.sc-sub{font-size:11px;color:var(--muted);margin-top:4px;transition:color .3s;}
+.sc-btn{margin-top:18px;padding:10px 0;background:transparent;border:1.5px solid var(--border);color:var(--soft);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:color .3s,border-color .3s;}
+.sc-btn:hover{color:inherit;}
+
+/* ── ABOUT ───────────────────────────────────────────────────────────────── */
+.about-section{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;min-height:560px;}
+.about-photo{position:relative;overflow:hidden;background:var(--linen);}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.about-photo-ph{width:100%;height:100%;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.about-photo-ph svg{opacity:.25;}
+.about-photo-ph span{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.about-content{padding:72px 60px;display:flex;flex-direction:column;justify-content:center;}
+.eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--taupe);margin-bottom:16px;}
+.about-content h2{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--ink);line-height:1.15;margin-bottom:20px;}
+.about-content p{font-size:14px;color:var(--soft);line-height:2.1;margin-bottom:14px;}
+.quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;font-weight:300;color:var(--ink);line-height:1.8;border-left:2px solid var(--taupe);padding-left:24px;margin:24px 0;}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.pill{padding:7px 14px;border:1px solid var(--border);font-size:11px;color:var(--soft);background:var(--white);}
+.photo-creds{display:flex;gap:32px;margin-top:28px;}
+.photo-cred .n{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);line-height:1;margin-bottom:3px;border-top:2px solid var(--taupe);padding-top:12px;}
+.photo-cred .l{font-size:10px;color:var(--muted);}
+
+/* ── FAQ ─────────────────────────────────────────────────────────────────── */
+.faq{background:var(--white);padding:100px 56px;}
+.faq-hd{margin-bottom:40px;}
+.faq-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
+.faq-hd .eyebrow{margin-bottom:10px;}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.faq-item{background:var(--warm);border:1px solid var(--border);cursor:pointer;}
+.faq-item:hover{border-color:var(--taupe2);}
+.faq-item.open{border-color:var(--taupe);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;gap:16px;}
+.faq-q-text{font-size:14px;color:var(--ink);font-weight:400;line-height:1.5;}
+.faq-icon{width:20px;height:20px;flex-shrink:0;position:relative;}
+.faq-icon::before,.faq-icon::after{content:'';position:absolute;background:var(--taupe);border-radius:1px;transition:transform .25s,opacity .25s;}
+.faq-icon::before{width:12px;height:1.5px;top:9px;left:4px;}
+.faq-icon::after{width:1.5px;height:12px;top:4px;left:9px;}
+.faq-item.open .faq-icon::after{transform:rotate(90deg);opacity:0;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-item.open .faq-a{max-height:200px;}
+.faq-a-inner{padding:0 26px 22px;font-size:13px;color:var(--soft);line-height:1.9;border-top:1px solid var(--linen);padding-top:16px;}
+
+/* ── BOOKING MODAL ───────────────────────────────────────────────────────── */
+.bk-modal{position:fixed;inset:0;background:rgba(40,33,24,.5);z-index:200;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px;}
+.bk-modal.open{display:flex;}
+.bk-wrap{background:var(--white);border:1px solid var(--border);width:100%;max-width:720px;padding:52px;position:relative;box-shadow:0 8px 48px rgba(40,33,24,.12);margin:auto;}
+.bk-close{position:absolute;top:20px;right:20px;background:none;border:none;cursor:pointer;color:var(--muted);font-size:20px;font-family:'DM Sans',sans-serif;transition:color .2s;line-height:1;}
+.bk-close:hover{color:var(--ink);}
+.bk-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);margin-bottom:32px;}
+
+/* Steps */
+.steps{display:flex;margin-bottom:44px;position:relative;}
+.steps::before{content:'';position:absolute;top:13px;left:16px;right:16px;height:1px;background:var(--border);}
+.si{flex:1;text-align:center;position:relative;z-index:1;}
+.si-dot{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted);transition:all .3s;}
+.si.active .si-dot{background:var(--ink);border-color:var(--ink);color:var(--white);}
+.si.done .si-dot{background:var(--taupe);border-color:var(--taupe);color:var(--white);}
+.si-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.si.active .si-lbl{color:var(--ink);}
+.si.done .si-lbl{color:var(--taupe);}
+.fsc{display:none;}.fsc.active{display:block;}
+
+/* Pick cards */
+.pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
+.pick-card{border:1.5px solid var(--border);padding:20px 14px;cursor:pointer;transition:all .2s;text-align:center;background:var(--warm);}
+.pick-card:hover{border-color:var(--ink);background:var(--linen);}
+.pick-card.sel{border-color:var(--ink);background:var(--ink);}
+.pick-card.sel .pc-name{color:var(--white);}
+.pick-card.sel .pc-price{color:var(--stone);}
+.pick-card.sel .pc-detail{color:var(--stone);opacity:.8;}
+.pick-card.disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);display:block;margin-bottom:4px;}
+.pc-price{font-size:13px;color:var(--taupe);font-weight:400;}
+.pc-detail{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* Calendar top nav bar */
+.cal-topnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 14px;background:var(--cream);border:1px solid var(--border);}
+.cal-slot-label{font-size:12px;color:var(--muted);flex:1;text-align:center;letter-spacing:1px;}
+.cal-slot-label.selected{color:var(--ink);font-weight:400;}
+.cal-arrow{width:40px;height:40px;border:none;background:var(--border);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.cal-arrow:disabled{opacity:.35;cursor:not-allowed;background:var(--border);}
+.cal-arrow:not(:disabled){background:var(--taupe);}
+.cal-arrow.back{background:transparent;border:1.5px solid var(--border);color:var(--soft);font-size:14px;}
+.cal-arrow.back:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Calendar: 7 columns */
+.schedule-note{font-size:11px;color:var(--soft);margin-bottom:12px;padding:10px 14px;background:var(--linen);border-left:2px solid var(--taupe);line-height:1.8;}
+.week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.week-nav button{background:none;border:1.5px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;padding:5px 12px;cursor:pointer;transition:all .2s;}
+.week-nav button:hover:not(:disabled){border-color:var(--ink);color:var(--ink);}
+.week-nav button:disabled{opacity:.3;cursor:not-allowed;}
+.week-label{font-size:11px;color:var(--soft);}
+.day-cols{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;}
+.day-col{display:flex;flex-direction:column;gap:4px;}
+.day-head{text-align:center;padding-bottom:8px;border-bottom:1.5px solid var(--border);margin-bottom:2px;}
+.day-head .dn{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
+.day-head .dd{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);line-height:1;}
+.day-head.today .dd,.day-head.today .dn{color:var(--taupe);}
+.slot-btn{border:1px solid var(--border);padding:6px 2px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm);}
+.slot-btn:hover:not(.taken){border-color:var(--taupe);background:var(--cream);}
+.slot-btn.sel{border-color:var(--ink);background:var(--linen);}
+.slot-btn.taken{opacity:.3;cursor:not-allowed;pointer-events:none;}
+.slot-time{font-size:10px;color:var(--text);font-weight:400;}
+.slot-taken-lbl{font-size:8px;color:var(--muted);margin-top:1px;}
+.no-slots{font-size:10px;color:var(--muted);text-align:center;padding:12px 0;opacity:.4;}
+
+/* Form */
+.frow{margin-bottom:18px;}
+.frow label{display:block;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.frow input,.frow textarea,.frow select{width:100%;background:var(--warm);border:1.5px solid var(--border);color:var(--text);padding:11px 15px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s;border-radius:0;-webkit-appearance:none;}
+.frow input:focus,.frow textarea:focus,.frow select:focus{border-color:var(--ink);background:var(--white);}
+.frow textarea{resize:vertical;min-height:96px;line-height:1.8;}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* Payment */
+.cbox{border:1px solid var(--border);padding:24px;margin-bottom:20px;background:var(--warm);}
+.crow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--linen);font-size:13px;}
+.crow:last-child{border:none;}
+.clbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.cval{color:var(--text);font-weight:400;}
+.ctotal .cval{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);}
+.pn-sec{text-align:center;margin-bottom:24px;padding:28px;background:var(--cream);border:1px solid var(--border);}
+.pn-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:18px;}
+.pn-qr{display:inline-block;background:#fff;padding:12px;border:1px solid var(--border);margin-bottom:14px;}
+.pn-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);margin-bottom:2px;}
+.pn-num{font-size:12px;color:var(--muted);letter-spacing:1px;}
+.pn-hint{font-size:11px;color:var(--soft);margin-top:8px;line-height:1.8;}
+.pay-note{background:var(--linen);border-left:2px solid var(--taupe);padding:14px 18px;margin-bottom:24px;}
+.pay-note p{font-size:12px;color:var(--soft);line-height:1.9;}
+.pay-note strong{color:var(--ink);font-weight:500;}
+.cancel-policy{background:var(--warm);border:1px solid var(--border);padding:14px 18px;margin-bottom:24px;font-size:12px;color:var(--muted);line-height:1.9;}
+
+/* Buttons */
+.btn-row{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.b-next{padding:12px 36px;background:var(--ink);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.b-next:hover{background:var(--ink2);}
+.b-next:disabled{opacity:.35;cursor:not-allowed;}
+.b-back{padding:12px 20px;background:transparent;border:1.5px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.b-back:hover{border-color:var(--ink);color:var(--ink);}
+.b-confirm{padding:12px 36px;background:var(--taupe);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.b-confirm:hover{background:var(--ink);}
+
+/* Success */
+.success{text-align:center;padding:40px 0;}
+.success-ring{width:56px;height:56px;border-radius:50%;border:2px solid var(--taupe);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+.success h3{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);margin-bottom:10px;}
+.success p{font-size:14px;color:var(--soft);line-height:2;}
+.ok-detail{background:var(--cream);border:1px solid var(--border);padding:22px;margin:24px 0;font-size:13px;color:var(--soft);line-height:2.2;text-align:left;}
+.ok-detail strong{color:var(--ink);font-weight:500;}
+
+/* Login modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(40,33,24,.5);z-index:200;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--white);padding:48px;width:100%;max-width:420px;border:1px solid var(--border);}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--ink);margin-bottom:6px;}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:32px;}
+.modal-err{background:var(--red-light);color:var(--red);font-size:12px;padding:10px 14px;margin-bottom:16px;display:none;}
+.modal-err.show{display:block;}
+
+/* Dashboard */
+.dashboard{background:var(--warm);padding:120px 56px 80px;display:none;}
+.dashboard.open{display:block;}
+.dash-hd{margin-bottom:48px;}
+.dash-hd h2{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--ink);}
+.dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+.dash-card{background:var(--white);border:1px solid var(--border);padding:28px;}
+.dash-card-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.dash-card-val{font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--ink);line-height:1;}
+.dash-card-sub{font-size:11px;color:var(--muted);margin-top:4px;}
+.dash-card.highlight{border-color:var(--taupe);background:var(--linen);}
+.dash-card.highlight .dash-card-val{color:var(--taupe);}
+.dash-section-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:20px;}
+.booking-list{display:flex;flex-direction:column;gap:10px;margin-bottom:48px;}
+.booking-item{background:var(--white);border:1px solid var(--border);padding:18px 22px;display:flex;justify-content:space-between;align-items:center;}
+.bi-date{font-size:14px;color:var(--ink);font-weight:400;}
+.bi-type{font-size:11px;color:var(--muted);margin-top:2px;}
+.bi-ref{font-size:10px;letter-spacing:1px;color:var(--muted);}
+.bi-status{display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+.bi-status.pending{background:var(--linen);color:var(--taupe);}
+.bi-status.confirmed{background:var(--green-light);color:var(--green);}
+.empty-state{text-align:center;padding:40px;color:var(--muted);font-size:13px;background:var(--white);border:1px solid var(--border);}
+.member-booking-wrap{background:var(--white);border:1px solid var(--border);padding:32px 36px;margin-top:24px;}
+
+/* Admin */
+.adm-toggle{text-align:center;padding:16px 0 4px;}
+.adm-toggle a{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;opacity:.3;}
+.adm-toggle a:hover{opacity:.8;}
+.adm-panel{background:var(--white);padding:80px 56px;display:none;border-top:1px solid var(--border);}
+.adm-panel.open{display:block;}
+.adm-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;}
+.adm-hd h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--ink);}
+.adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.adm-card{background:var(--warm);border:1px solid var(--border);padding:32px;}
+.adm-card h3{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:16px;}
+.adm-lbl{font-size:10px;letter-spacing:1px;color:var(--soft);display:block;margin-bottom:5px;}
+.adm-inp{width:100%;background:var(--white);border:1.5px solid var(--border);padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;margin-bottom:10px;transition:border-color .2s;}
+.adm-inp:focus{border-color:var(--ink);}
+.adm-save{padding:10px 26px;background:var(--ink);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:6px;}
+.adm-save:hover{opacity:.85;}
+.blocked-list{margin-top:12px;max-height:160px;overflow-y:auto;border:1px solid var(--border);background:var(--white);}
+.blocked-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--linen);font-size:12px;color:var(--soft);}
+.blocked-item:last-child{border-bottom:none;}
+.blocked-item button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;}
+.blocked-item button:hover{color:var(--red);}
+.adm-bookings{margin-top:32px;}
+.adm-bookings-table{width:100%;border-collapse:collapse;font-size:12px;}
+.adm-bookings-table th{text-align:left;padding:8px 12px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.adm-bookings-table td{padding:10px 12px;border-bottom:1px solid var(--linen);color:var(--soft);}
+.adm-bookings-table tr:hover td{background:var(--warm);}
+
+/* Footer */
+footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:space-between;align-items:center;}
+.fb-main{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--white);}
+.footer-logo-slot{margin-bottom:10px;}
+.footer-logo-img{height:56px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.92;}
+.footer-logo-placeholder{height:56px;padding:0 24px;display:flex;align-items:center;justify-content:center;border:1.5px dashed rgba(255,255,255,.3);border-radius:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.fb-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--stone);margin-top:3px;opacity:.7;}
+.fi p{font-size:11px;color:var(--stone);line-height:2;text-align:right;opacity:.7;}
+.toast{position:fixed;bottom:32px;right:32px;background:var(--ink);color:var(--white);padding:14px 24px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;}
+.toast.show{opacity:1;}
+
+/* Mobile */
+@media(max-width:768px){
+  nav{padding:12px 20px;}
+  .nav-links-pages{display:none;}
+  .nav-links{gap:10px;}
+  .nav-actions{gap:8px;}
+  .hero-main{grid-template-columns:1fr;}
+  .hero-left{padding:48px 24px 32px;}
+  .hero-right{min-height:260px;}
+  .sess-grid{grid-template-columns:1fr;}
+  .sess-card{border-right:none;border-bottom:1px solid var(--border);}
+  .sess-card:last-child{border-bottom:none;}
+  .about-section{grid-template-columns:1fr;}
+  .about-photo{min-height:300px;}
+  .about-content{padding:48px 24px;}
+  .faq{padding:72px 24px;}
+  .faq-grid{grid-template-columns:1fr;}
+  .bk-wrap{padding:32px 24px;}
+  .pick-grid{grid-template-columns:1fr;}
+  .day-cols{grid-template-columns:repeat(7,1fr);gap:2px;overflow-x:auto;}
+  .slot-time{font-size:9px;}
+  .day-head .dd{font-size:15px;}
+  .f2{grid-template-columns:1fr;}
+  .dash-cards{grid-template-columns:1fr;}
+  .dashboard{padding:100px 24px 60px;}
+  footer{flex-direction:column;gap:20px;text-align:center;padding:40px 24px;}
+  .fi p{text-align:center;}
+  .adm-grid{grid-template-columns:1fr;}
+  .adm-panel{padding:60px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-side-left">
+    <div class="nav-links-pages" style="display:flex;gap:24px;align-items:center;">
+      <a href="#sessions">Services</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+
+  <!-- ── LOGO SLOT ──────────────────────────────────────────────────────
+       Replace linden-logo.png in the repo root with your own artwork
+       (transparent PNG or SVG recommended). If the file is missing, a
+       dashed placeholder box shows instead so the layout never breaks. -->
+  <div class="nav-logo-slot">
+    <img src="linden-logo.png" alt="Linden Pilates" class="nav-logo-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <span class="nav-logo-placeholder" style="display:none;">Your logo here</span>
+  </div>
+
+  <div class="nav-side-right nav-links">
+    <a href="https://lindenpilates.simplybook.asia" target="_blank" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ HERO (photo + sessions) ═══ -->
+<section class="hero" id="home">
+
+  <!-- Top: description left, studio photo right -->
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-tag">Reformer · Tower · Cadillac · Draycott</div>
+      <h1 class="hero-h1">Pilates built<br>around <em>you.</em></h1>
+      <p class="hero-desc">PMA certified <strong>Master Instructor with 14 years of experience</strong> and a background in Sports Science. Every 50-minute session is fully tailored — calm, focused, and real.</p>
+      <p class="hero-studio-info">
+        <strong>📍 Quiet home studio</strong><br>
+        Reformer · Tower · Barre Bar<br>
+        Street parking available nearby<br>
+        By appointment only
+      </p>
+      <div class="hero-btns">
+        <a class="btn-fill" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:inline-block;">Book a Trial</a>
+        <a href="#about" class="btn-line">About</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="IMG_1842_Original.jpeg" class="hero-photo" alt="Linden Pilates Studio"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hero-photo-ph" style="display:none;">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
+        <span>Studio Photo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: 3 session cards, full width -->
+  <div class="hero-sessions" id="sessions">
+    <div class="sess-grid">
+      <div class="sess-card">
+        <span class="sc-tag">First Time</span>
+        <div class="sc-name">Trial Session</div>
+        <div class="sc-div"></div>
+        <p class="sc-desc">New to Pilates or to my studio? A tailored intro session with body assessment and personalised movements based on your goals.</p>
+        <div class="sc-price">$90</div>
+        <div class="sc-sub">50 min · One-time rate</div>
+        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+      </div>
+      <div class="sess-card">
+        <span class="sc-tag">Regular</span>
+        <div class="sc-name">Private Session</div>
+        <div class="sc-div"></div>
+        <p class="sc-desc">Reformer &amp; Tower work tailored to you — posture, strength, pre/postnatal support, or rehab-focused movement.</p>
+        <div class="sc-price">$130</div>
+        <div class="sc-sub">50 min · Per session</div>
+        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+      </div>
+      <div class="sess-card">
+        <span class="sc-tag">Best Value</span>
+        <div class="sc-name">10-Session Package</div>
+        <div class="sc-div"></div>
+        <p class="sc-desc">Commit to your practice and save. 10 private sessions with full scheduling flexibility and priority booking.</p>
+        <div class="sc-price">$1,200</div>
+        <div class="sc-sub">10 × 50 min · $120/session</div>
+        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ ABOUT ══ -->
+<section class="about-section" id="about">
+  <div class="about-photo">
+    <img src="IMG_2652.jpeg" alt="Yeji — Senior Pilates Instructor"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="about-photo-ph" style="display:none;">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>Yeji's Photo</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="eyebrow">Senior Instructor</div>
+    <h2>Movement that<br>fits your body.</h2>
+    <p>Hi, I'm Yeji — a PMA certified Master Pilates Instructor with 14 years of experience and a background in Sports Science, bringing both clinical knowledge and real-world coaching to every session.</p>
+    <p>I offer 1:1 Reformer, Tower, and Barre Bar sessions in a quiet home studio by appointment. Every session is designed around you — your posture, history, and goals.</p>
+    <div class="quote">"Each session is calm, focused, and built for real progress — not just on the reformer, but in everyday life."</div>
+    <div class="pills">
+      <span class="pill">Reformer &amp; Tower</span>
+      <span class="pill">Barre Bar</span>
+      <span class="pill">Posture Correction</span>
+      <span class="pill">Pre/Postnatal</span>
+      <span class="pill">Rehab-Focused</span>
+      <span class="pill">Sports Science</span>
+    </div>
+    <div class="photo-creds">
+      <div class="photo-cred"><div class="n">PMA</div><div class="l">Certified</div></div>
+      <div class="photo-cred"><div class="n">10+</div><div class="l">Years</div></div>
+      <div class="photo-cred"><div class="n">1:1</div><div class="l">Private only</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ FAQ ═ -->
+<section class="faq" id="faq">
+  <div class="faq-hd"><div class="eyebrow">FAQ</div><h2>Q&amp;A</h2></div>
+  <div class="faq-grid">
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Do I need prior Pilates experience?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Not at all. The Trial Session is designed for complete beginners. We start with a body assessment and build at your own pace.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What should I wear and bring?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Comfortable, form-fitting workout clothes. Grip socks are recommended — I have some available. Bring water and arrive 5 minutes early.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Where is the studio?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">A quiet private studio in the Draycott area, just off Orchard Road. The exact address is shared after booking confirmation.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Is there parking available?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes, parking is available nearby. Full directions are shared after booking confirmation.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What is the cancellation policy?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Please contact us directly for any cancellations or changes. Late cancellations (under 24 hours) or no-shows are non-refundable.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Can I do sessions while pregnant?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — prenatal Pilates is one of my specialisms. Sessions are adapted for every trimester. Please mention your stage when booking.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received and you will receive a confirmation SMS.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Do 10-session packs expire?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">10-session packs are valid for 6 months from purchase. They are non-transferable and non-refundable once purchased.</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo-slot">
+      <img src="linden-logo.png" alt="Linden Pilates" class="footer-logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="footer-logo-placeholder" style="display:none;">Your logo here</span>
+    </div>
+    <div class="fb-main">Linden Pilates</div>
+  </div>
+  <div class="fi">
+    <p>Draycott · Off Orchard Road</p>
+    <p>Reformer · Tower · Barre Bar</p>
+    <p>Private studio · By appointment only</p>
+    <p>PMA Certified · Sports Science background</p>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+
+<a href="https://wa.me/6596141012" target="_blank" aria-label="Chat on WhatsApp" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:9999;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleFaq(el){
+  const isOpen = el.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(f=>f.classList.remove("open"));
+  if(!isOpen) el.classList.add("open");
+}
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 3000);
+}
+</script>
+</body>
+</html>
