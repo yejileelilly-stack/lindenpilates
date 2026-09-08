@@ -41,17 +41,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 
 /* top split: text left, photo right */
 .hero-main{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:520px;}
-.hero-left{padding:60px 56px 48px;display:flex;flex-direction:column;justify-content:flex-start;}
-.hero-tag{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:26px;font-weight:500;}
+.hero-left{padding:64px 60px 52px;display:flex;flex-direction:column;justify-content:center;}
+.hero-tag{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:24px;font-weight:500;}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--taupe);}
-.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5vw,80px);font-weight:300;color:var(--ink);line-height:1.06;margin-bottom:26px;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5vw,80px);font-weight:300;color:var(--ink);line-height:1.05;margin-bottom:24px;}
 .hero-h1 em{font-style:italic;color:var(--taupe);}
-.hero-desc{font-size:17px;color:var(--soft);line-height:1.9;max-width:440px;margin-bottom:26px;}
+.hero-desc{font-size:17px;color:var(--soft);line-height:1.85;max-width:430px;margin-bottom:22px;}
 .hero-desc strong{color:var(--ink);font-weight:500;}
-.hero-studio-info{font-size:15px;color:var(--soft);line-height:1.7;margin-bottom:0;}
+.hero-specialties{font-size:12.5px;letter-spacing:.8px;color:var(--taupe);font-weight:500;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:26px;max-width:430px;}
+.hero-studio-info{font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:0;}
 .hero-studio-info strong{color:var(--ink);font-weight:500;}
 .hero-addr{color:var(--muted);font-size:14px;}
-.hero-appt{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:14px;}
+.hero-appt{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:12px;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
 .btn-fill{padding:14px 40px;background:var(--ink);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
 .btn-fill:hover{background:var(--ink2);}
@@ -335,6 +336,7 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   #nav-guest{gap:10px!important;}
   .hero-main{grid-template-columns:1fr;}
   .hero-left{padding:48px 24px 32px;}
+  .hero-specialties{font-size:11.5px;line-height:1.9;}
   .hero-right{min-height:260px;}
   .sess-grid{grid-template-columns:1fr;}
   .sess-card{border-right:none;border-bottom:1px solid var(--border);}
@@ -505,7 +507,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="pn-num">+65 9614 1012</div>
         <div class="pn-hint">Scan with any Singapore banking app<br>Amount &amp; reference pre-filled</div>
       </div>
-      <div class="pay-note"><p>After tapping <strong>Confirm Booking</strong>, complete the PayNow transfer above. We'll confirm your booking via WhatsApp once payment is received.<br><br>Reference: <strong id="pay-ref">YP-XXXXXX</strong></p></div>
+      <div class="pay-note"><p><strong>1.</strong> &nbsp;Scan the QR above with your banking app and complete the PayNow transfer.<br><strong>2.</strong> &nbsp;Tap <strong>Confirm Booking</strong> below to hold your slot.<br><br>Once payment is received, we'll confirm your booking via WhatsApp.<br><br>Reference: <strong id="pay-ref">YP-XXXXXX</strong></p></div>
       <div class="cancel-policy">For cancellations, please contact us directly. Cancellations under 24 hours or no-shows are non-refundable.</div>
       <div class="btn-row"><button class="b-back" onclick="goTo(3)">← Back</button><button class="b-confirm" id="btn-confirm" onclick="submitBooking()">Confirm Booking ✓</button></div>
     </div>
@@ -630,11 +632,12 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <!-- Top: description left, studio photo right -->
   <div class="hero-main">
     <div class="hero-left">
-      <div class="hero-tag">Private Studio · Orchard · Draycott</div>
+      <div class="hero-tag">Private Pilates · Orchard</div>
       <h1 class="hero-h1">Pilates built<br>around <em>you.</em></h1>
-      <p class="hero-desc">Every session is tailored to one body — yours. Calm, focused, fully-equipped 1:1 training, with <strong>10+ years of experience</strong> behind each session.</p>
+      <p class="hero-desc">Focused 1:1 sessions in a calm, fully-equipped home studio — with <strong>10+ years of experience</strong> behind every session.</p>
+      <div class="hero-specialties">Postural alignment &nbsp;·&nbsp; Pre &amp; postnatal &nbsp;·&nbsp; Pain &amp; recovery support</div>
       <p class="hero-studio-info">
-        <strong>📍 Home-based studio · The Draycott</strong><br>
+        <strong>📍 The Draycott · Orchard</strong><br>
         <span class="hero-addr">Draycott Park, Singapore 259399</span>
       </p>
       <p class="hero-appt">By appointment only</p>
