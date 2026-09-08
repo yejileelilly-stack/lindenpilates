@@ -40,8 +40,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero{min-height:100vh;background:var(--warm);display:flex;flex-direction:column;padding-top:80px;}
 
 /* top split: text left, photo right */
-.hero-main{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:560px;}
-.hero-left{padding:56px 56px 48px;display:flex;flex-direction:column;justify-content:center;}
+.hero-main{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:520px;}
+.hero-left{padding:60px 56px 48px;display:flex;flex-direction:column;justify-content:flex-start;}
 .hero-tag{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:26px;font-weight:500;}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--taupe);}
 .hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5vw,80px);font-weight:300;color:var(--ink);line-height:1.06;margin-bottom:26px;}
@@ -445,7 +445,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
 
     <!-- sc2: Date & Time -->
     <div class="fsc" id="sc2">
-      <div class="schedule-note"><strong>Mon · Wed · Fri</strong> — 8–11am &nbsp;|&nbsp; <strong>Tue · Thu</strong> — 3–7pm &nbsp;|&nbsp; <strong>Sat</strong> — 9–11am<br><span style="color:var(--muted);">Online booking is available from tomorrow onwards. For same-day sessions, please message us on WhatsApp.</span></div>
+      <div class="schedule-note"><strong>Mon · Wed · Fri</strong> — 8–11am &nbsp;|&nbsp; <strong>Tue · Thu</strong> — 3–7pm &nbsp;|&nbsp; <strong>Sat</strong> — 9–11am<br><span style="color:var(--muted);">📅 Book from tomorrow onwards &nbsp;·&nbsp; 💬 Same-day? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);font-weight:500;">Message us on WhatsApp</a></span></div>
       <!-- Selected slot summary + clearly-labeled continue button -->
       <div class="cal-topnav">
         <span class="cal-slot-label" id="slot-selected-label">Select a date &amp; time below</span>
@@ -519,8 +519,8 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
           <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">Your slot is temporarily held.</p>
           <p style="font-size:13px;color:var(--soft);">Please complete your PayNow transfer to confirm your booking.</p>
           <div class="ok-detail" id="ok-detail-new" style="margin:20px 0;"></div>
-          <a id="wa-notify-btn" href="#" target="_blank" style="display:block;background:#25D366;color:#fff;text-decoration:none;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;font-weight:500;margin-bottom:14px;border-radius:4px;">✓ Notify us on WhatsApp to confirm</a>
-          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:8px;">Tap the button above after paying — it sends your booking details to us so we can confirm your slot right away.</div>
+          <a id="wa-notify-btn" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:17px 20px;font-family:'DM Sans',sans-serif;font-size:14px;letter-spacing:.3px;font-weight:600;margin-bottom:14px;border-radius:6px;box-shadow:0 3px 12px rgba(37,211,102,.3);">💬 Send my booking on WhatsApp</a>
+          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:8px;">After paying, tap the green button — it sends your details to us so we can confirm your slot and reply with everything you need. ✨</div>
         </div>
       </div>
     </div>
@@ -770,7 +770,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
 </div>
 
 <!-- WhatsApp FAB -->
-<a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" aria-label="Chat on WhatsApp" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:9999;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+<a id="wa-float" href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" aria-label="Chat on WhatsApp" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:9999;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>
 </a>
 
@@ -827,10 +827,12 @@ function openBookingModal() {
   if (!isMemberFlow) { bookTrial(); return; }
   document.getElementById('booking-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  var _wf=document.getElementById('wa-float'); if(_wf) _wf.style.display='none';
 }
 function closeBookingModal() {
   document.getElementById('booking-modal').classList.remove('open');
   document.body.style.overflow = '';
+  var f=document.getElementById('wa-float'); if(f) f.style.display='';
 }
 document.getElementById('booking-modal').addEventListener('click', function(e) {
   if (e.target === this) closeBookingModal();
@@ -1125,6 +1127,7 @@ function bookSession(name, price) {
   });
   document.getElementById('booking-modal').classList.add('open');
   document.body.style.overflow='hidden';
+  var _f=document.getElementById('wa-float'); if(_f) _f.style.display='none';
   setNewClientMode();
   weekOffset=0;
   goTo(2);
