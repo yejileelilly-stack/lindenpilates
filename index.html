@@ -8,42 +8,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root{
-  --ink:#2B2B2A;--ink2:#3D5548;--taupe:#628474;--taupe2:#8AA696;
-  --stone:#CBD3CD;--linen:#E0E6E3;--cream:#E0E6E3;--white:#FFFFFF;
-  --warm:#E0E6E3;--text:#2B2B2A;--soft:#5B5B57;--muted:#8A8A85;--border:#CBD3CD;
-  --green:#628474;--green-light:#E8EFEA;--red:#B84040;--red-light:#F5ECEC;
+  --ink:#2E3D35;--ink2:#476155;--taupe:#628474;--taupe2:#89A395;
+  --stone:#B7C7BE;--linen:#D5E0DA;--cream:#EDF2EF;--white:#FFFFFF;
+  --warm:#F4F7F5;--text:#2E3D35;--soft:#4A5A50;--muted:#8B9C92;--border:#CAD6D0;
+  --green:#628474;--green-light:#E0E6E3;--red:#B84040;--red-light:#F5ECEC;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-
-/* ── SimplyBook popup modal ─────────────────────────────────────────────── */
-.sb-modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(43,43,42,.6);align-items:center;justify-content:center;padding:24px;}
-.sb-modal-overlay.open{display:flex;}
-.sb-modal-box{background:#fff;width:100%;max-width:960px;height:90vh;max-height:800px;position:relative;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);}
-.sb-modal-close{position:absolute;top:10px;right:14px;z-index:2;background:rgba(43,43,42,.85);color:#fff;border:none;width:32px;height:32px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;}
-.sb-modal-close:hover{background:#000;}
-.sb-modal-box iframe{width:100%;height:100%;border:none;display:block;}
-@media (max-width:640px){.sb-modal-box{height:95vh;}}
 html{scroll-behavior:smooth;scroll-padding-top:80px;}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);font-weight:300;line-height:1.7;}
 
 /* ── NAV ─────────────────────────────────────────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:rgba(224,230,227,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-.nav-logo-slot{grid-column:2;display:flex;justify-content:center;align-items:center;}
-.nav-side-left{grid-column:1;display:flex;justify-content:flex-start;}
-.nav-side-right{grid-column:3;display:flex;justify-content:flex-end;}
-.nav-brand-main{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);letter-spacing:1.5px;font-weight:400;display:block;}
-.nav-logo-img{height:64px;width:auto;display:block;}
-.nav-logo-placeholder{height:64px;padding:0 26px;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--stone);border-radius:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:'DM Sans',sans-serif;white-space:nowrap;}
-.nav-links{display:flex;gap:24px;align-items:center;}
-.nav-links-pages{display:flex;gap:24px;align-items:center;}
-.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);text-decoration:none;transition:color .2s;white-space:nowrap;}
-.nav-links a:hover{color:var(--ink);}
-.nav-actions{display:flex;gap:12px;align-items:center;}
-.nav-cta{padding:9px 20px;border:1.5px solid var(--taupe);color:var(--white);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;cursor:pointer;background:var(--taupe);white-space:nowrap;}
-.nav-cta:hover{background:var(--ink2);border-color:var(--ink2);}
-.nav-user{display:flex;align-items:center;gap:10px;}
-.nav-user-name{font-size:12px;color:var(--soft);}
-.nav-logout{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--taupe);border-bottom:1px solid rgba(255,255,255,.15);}
+.nav-left{display:flex;gap:24px;align-items:center;justify-self:start;}
+.nav-center{justify-self:center;}
+.nav-right{display:flex;gap:16px;align-items:center;justify-self:end;}
+.nav-logo{height:40px;width:auto;display:block;}
+.nav-brand-main{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--white);letter-spacing:1.5px;font-weight:400;display:block;}
+.nav-left a,.nav-right a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;transition:color .2s;white-space:nowrap;}
+.nav-left a:hover,.nav-right a:hover{color:var(--white);}
+.nav-right a.nav-cta{padding:9px 20px;border:1.5px solid rgba(255,255,255,.7);color:var(--white);background:transparent;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;}
+.nav-right a.nav-cta:hover{background:var(--white);color:var(--taupe);border-color:var(--white);}
+.nav-user{display:flex;align-items:center;gap:14px;}
+.nav-user-name{font-size:12px;color:rgba(255,255,255,.9);}
+.nav-logout{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
 .nav-logout:hover{color:var(--red);}
 
 /* ── HERO SECTION (photo + description + sessions) ────────────────────────── */
@@ -84,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .sess-card:hover .sc-desc,.sess-card:hover .sc-sub{color:var(--stone)!important;opacity:.75;}
 .sess-card:hover .sc-price{color:var(--white)!important;}
 .sess-card:hover .sc-div{background:rgba(198,184,170,.25)!important;}
-.sess-card:hover .sc-btn{color:var(--white)!important;border-color:rgba(255,255,255,0.4)!important;}
+.sess-card:hover .sc-btn{background:var(--green-light)!important;color:var(--ink)!important;border-color:var(--green-light)!important;}
 .sc-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:14px;display:block;transition:color .3s;}
 .sc-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink);margin-bottom:10px;transition:color .3s;}
 .sc-div{width:28px;height:1px;background:var(--border);margin-bottom:12px;transition:background .3s;}
@@ -111,6 +98,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .photo-creds{display:flex;gap:32px;margin-top:28px;}
 .photo-cred .n{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);line-height:1;margin-bottom:3px;border-top:2px solid var(--taupe);padding-top:12px;}
 .photo-cred .l{font-size:10px;color:var(--muted);}
+
+/* ── REVIEWS ──────────────────────────────────────────────────────────────── */
+.reviews{background:var(--warm);padding:100px 56px;}
+.reviews-hd{text-align:center;margin-bottom:48px;}
+.reviews-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
+.reviews-hd .eyebrow{margin-bottom:10px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;margin:0 auto;}
+.review-card{background:var(--white);border:1px solid var(--border);padding:32px 30px;display:flex;flex-direction:column;}
+.review-stars{color:var(--taupe);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
+.review-text{font-size:14px;color:var(--soft);line-height:1.9;font-style:italic;flex:1;margin-bottom:18px;}
+.review-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);}
+@media(max-width:768px){.reviews{padding:72px 24px;}.reviews-grid{grid-template-columns:1fr;}}
 
 /* ── FAQ ─────────────────────────────────────────────────────────────────── */
 .faq{background:var(--white);padding:100px 56px;}
@@ -182,19 +181,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .week-nav button:hover:not(:disabled){border-color:var(--ink);color:var(--ink);}
 .week-nav button:disabled{opacity:.3;cursor:not-allowed;}
 .week-label{font-size:11px;color:var(--soft);}
-.day-cols{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;}
-.day-col{display:flex;flex-direction:column;gap:4px;}
-.day-head{text-align:center;padding-bottom:8px;border-bottom:1.5px solid var(--border);margin-bottom:2px;}
-.day-head .dn{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
-.day-head .dd{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);line-height:1;}
-.day-head.today .dd,.day-head.today .dn{color:var(--taupe);}
-.slot-btn{border:1px solid var(--border);padding:6px 2px;text-align:center;cursor:pointer;transition:all .2s;background:var(--warm);}
-.slot-btn:hover:not(.taken){border-color:var(--taupe);background:var(--cream);}
-.slot-btn.sel{border-color:var(--ink);background:var(--linen);}
-.slot-btn.taken{opacity:.3;cursor:not-allowed;pointer-events:none;}
-.slot-time{font-size:10px;color:var(--text);font-weight:400;}
+.day-cols{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px;}
+.day-col{display:flex;flex-direction:column;gap:6px;}
+.day-head{text-align:center;padding-bottom:9px;border-bottom:1.5px solid var(--border);margin-bottom:3px;}
+.day-head .dn{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.day-head .dd{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ink);line-height:1;}
+.day-head.today{border-bottom-color:var(--taupe);}
+.day-head.today .dd,.day-head.today .dn{color:var(--taupe);font-weight:500;}
+.slot-btn{border:1.5px solid var(--border);border-radius:3px;padding:10px 2px;text-align:center;cursor:pointer;transition:all .18s;background:var(--white);}
+.slot-btn:hover:not(.taken){border-color:var(--taupe);background:var(--taupe);}
+.slot-btn:hover:not(.taken) .slot-time{color:var(--white);}
+.slot-btn.sel{border-color:var(--taupe);background:var(--taupe);}
+.slot-btn.sel .slot-time{color:var(--white);font-weight:500;}
+.slot-btn.taken{opacity:.4;cursor:not-allowed;pointer-events:none;background:var(--cream);border-color:var(--cream);border-style:dashed;}
+.slot-time{font-size:11px;color:var(--soft);font-weight:400;transition:color .18s;}
 .slot-taken-lbl{font-size:8px;color:var(--muted);margin-top:1px;}
-.no-slots{font-size:10px;color:var(--muted);text-align:center;padding:12px 0;opacity:.4;}
+.no-slots{font-size:10px;color:var(--muted);text-align:center;padding:14px 0;opacity:.4;}
 
 /* Form */
 .frow{margin-bottom:18px;}
@@ -301,22 +303,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .adm-bookings-table tr:hover td{background:var(--warm);}
 
 /* Footer */
-footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:space-between;align-items:center;}
-.fb-main{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--white);}
-.footer-logo-slot{margin-bottom:10px;}
-.footer-logo-img{height:56px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.92;}
-.footer-logo-placeholder{height:56px;padding:0 24px;display:flex;align-items:center;justify-content:center;border:1.5px dashed rgba(255,255,255,.3);border-radius:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;white-space:nowrap;}
-.fb-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--stone);margin-top:3px;opacity:.7;}
-.fi p{font-size:11px;color:var(--stone);line-height:2;text-align:right;opacity:.7;}
+footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+.footer-logo{width:220px;height:220px;object-fit:contain;display:block;margin:0 auto;}
+.fb-main{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--white);}
+.fb-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--linen);margin-top:3px;opacity:.85;}
+.fi p{font-size:11px;color:var(--linen);line-height:2;text-align:center;opacity:.85;}
 .toast{position:fixed;bottom:32px;right:32px;background:var(--ink);color:var(--white);padding:14px 24px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;}
 .toast.show{opacity:1;}
 
 /* Mobile */
 @media(max-width:768px){
-  nav{padding:12px 20px;}
-  .nav-links-pages{display:none;}
-  .nav-links{gap:10px;}
-  .nav-actions{gap:8px;}
+  nav{padding:10px 20px;}
+  .nav-left{display:none;}
+  .nav-logo{height:38px;}
+  .nav-right{gap:10px;}
+  .nav-user{gap:8px;}
+  #nav-guest{gap:10px!important;}
   .hero-main{grid-template-columns:1fr;}
   .hero-left{padding:48px 24px 32px;}
   .hero-right{min-height:260px;}
@@ -345,27 +347,262 @@ footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:spac
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-side-left">
-    <div class="nav-links-pages" style="display:flex;gap:24px;align-items:center;">
-      <a href="#sessions">Services</a>
-      <a href="#about">About</a>
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKEND CONFIG — Google Apps Script
+   1) Apps Script 배포 후 나오는 웹앱 URL(/exec 로 끝남)을 아래에 붙여넣으세요.
+   2) PayNow 번호/이름도 여기서 바꿀 수 있습니다.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwemc71euxUCZFSOfhfYuKrzq8OlUL6hl5prZeUROt-lFOj3Jn31l6Wj3aEkXxIgBJq/exec';
+const PAYNOW_NUMBER = '+6596141012';
+const PAYNOW_NAME = 'Yeji';
+</script>
+
+<!-- PIN LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <h3>Member Login</h3>
+    <p class="modal-sub">Enter your 4-digit PIN.<br><span style="font-size:11px;opacity:.7;">Your PIN is the last 4 digits of your phone number.</span></p>
+    <div class="modal-err" id="login-err"></div>
+    <div class="frow">
+      <label>Your PIN</label>
+      <input type="tel" id="login-pin" placeholder="••••" maxlength="4" style="font-size:28px;letter-spacing:12px;text-align:center;" onkeyup="if(this.value.length===4)doLogin()">
+    </div>
+    <div class="btn-row" style="margin-top:8px;">
+      <button class="b-back" onclick="closeLogin()">Cancel</button>
+      <button class="b-next" onclick="doLogin()">Sign In →</button>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:20px;text-align:center;">New client? <a href="#" onclick="closeLogin();bookTrial()" style="color:var(--taupe);">Book a trial →</a></p>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="bk-modal" id="booking-modal">
+  <div class="bk-wrap">
+    <button class="bk-close" onclick="closeBookingModal()">✕</button>
+    <div class="bk-title">Book a Session</div>
+
+    <div id="member-booking-header" style="display:none;margin-bottom:28px;">
+      <div style="background:var(--linen);border:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:4px;">Sessions Remaining</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--ink);line-height:1;" id="member-sess-remaining">—</div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);text-align:right;line-height:2;" id="member-sess-detail">In your current pack</div>
+      </div>
+    </div>
+
+    <div class="steps" id="steps-new">
+      <div class="si active" id="si1"><div class="si-dot">1</div><div class="si-lbl">Session</div></div>
+      <div class="si" id="si2"><div class="si-dot">2</div><div class="si-lbl">Date & Time</div></div>
+      <div class="si" id="si3"><div class="si-dot">3</div><div class="si-lbl">Your Info</div></div>
+      <div class="si" id="si4"><div class="si-dot">4</div><div class="si-lbl">Payment</div></div>
+    </div>
+    <div class="steps" id="steps-member" style="display:none;">
+      <div class="si active" id="si1m"><div class="si-dot">1</div><div class="si-lbl">Date & Time</div></div>
+      <div class="si" id="si2m"><div class="si-dot">2</div><div class="si-lbl">Confirm</div></div>
+    </div>
+
+    <!-- sc0: New client or Member -->
+    <div class="fsc active" id="sc0">
+      <p style="font-size:13px;color:var(--soft);margin-bottom:28px;">How would you like to book?</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div onclick="chooseNew()" style="border:1.5px solid var(--border);padding:36px 24px;cursor:pointer;text-align:center;transition:all .2s;background:var(--warm);" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink);margin-bottom:8px;">New Client</div>
+          <div style="font-size:12px;color:var(--muted);">Trial or single session</div>
+        </div>
+        <div onclick="chooseMember()" style="border:1.5px solid var(--border);padding:36px 24px;cursor:pointer;text-align:center;transition:all .2s;background:var(--warm);" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink);margin-bottom:8px;">Member</div>
+          <div style="font-size:12px;color:var(--muted);">10-session pack holder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- sc1: Session select -->
+    <div class="fsc" id="sc1">
+      <p id="sc1-hint" style="font-size:11px;color:var(--muted);margin-bottom:18px;">Choose your session type</p>
+      <div class="pick-grid" id="pick-grid-new">
+        <div class="pick-card sel" onclick="pickSess(this,'Trial Session','$70')"><span class="pc-name">Trial Session</span><span class="pc-price">$70</span><span class="pc-detail">First time · 50 min</span></div>
+        <div class="pick-card" onclick="pickSess(this,'Private Session','$140')"><span class="pc-name">Private Session</span><span class="pc-price">$140</span><span class="pc-detail">50 min</span></div>
+        <div class="pick-card disabled"><span class="pc-name">10-Session Pack</span><span class="pc-price">$1,200</span><span class="pc-detail">Members only</span></div>
+      </div>
+      <div class="pick-grid" id="pick-grid-member" style="display:none;">
+        <div class="pick-card sel" onclick="pickSess(this,'Trial Session','$70')"><span class="pc-name">Trial Session</span><span class="pc-price">$70</span><span class="pc-detail">First time · 50 min</span></div>
+        <div class="pick-card" onclick="pickSess(this,'Private Session','$140')"><span class="pc-name">Private Session</span><span class="pc-price">$140</span><span class="pc-detail">Regular · 50 min</span></div>
+        <div class="pick-card" onclick="pickSess(this,'10-Session Pack','$1,200')"><span class="pc-name">10-Session Pack</span><span class="pc-price">$1,200</span><span class="pc-detail">Best value</span></div>
+      </div>
+      <div class="btn-row" style="justify-content:flex-end;"><button class="b-next" onclick="goTo(2)">Next →</button></div>
+    </div>
+
+    <!-- sc2: Date & Time -->
+    <div class="fsc" id="sc2">
+      <div class="schedule-note"><strong>Mon · Wed · Fri</strong> — 8–11am &nbsp;|&nbsp; <strong>Tue · Thu</strong> — 3–7pm &nbsp;|&nbsp; <strong>Sat</strong> — 9–11am<br><span style="color:var(--muted);">Bookings close at midnight the day before.</span></div>
+      <!-- Top nav: back arrow | selected slot label | next arrow -->
+      <div class="cal-topnav">
+        <button class="cal-arrow back" onclick="memberCalBack()">←</button>
+        <span class="cal-slot-label" id="slot-selected-label">Select a date &amp; time</span>
+        <button class="cal-arrow" id="btn-n2" onclick="goToAfterSlot()" disabled>→</button>
+      </div>
+      <div class="week-nav">
+        <button id="btn-prev" onclick="prevWeek()">← Prev</button>
+        <span class="week-label" id="week-label"></span>
+        <button onclick="nextWeek()">Next →</button>
+      </div>
+      <div class="day-cols" id="day-cols"></div>
+    </div>
+
+    <!-- sc3: Your Info -->
+    <div class="fsc" id="sc3">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:18px;">Tell me a bit about yourself</p>
+      <div class="f2">
+        <div class="frow"><label>Full Name</label><input type="text" id="inp-name" placeholder="Jane Smith"></div>
+        <div class="frow"><label>Phone Number</label><input type="tel" id="inp-phone" placeholder="+65 9000 0000"></div>
+      </div>
+      <div class="frow"><label>Pilates Experience</label>
+        <select id="inp-exp"><option value="">Please select</option><option>Complete beginner</option><option>Some experience (under 3 months)</option><option>Over 1 year of practice</option></select>
+      </div>
+      <div class="frow"><label>Body goals / anything I should know</label><textarea id="inp-memo" placeholder="e.g. lower back pain, postpartum recovery, posture..."></textarea></div>
+      <div class="btn-row"><button class="b-back" onclick="goTo(2)">← Back</button><button class="b-next" onclick="val3()">Next →</button></div>
+    </div>
+
+    <!-- sc3m: Member confirm -->
+    <div class="fsc" id="sc3m">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:18px;">Almost done — any notes for this session?</p>
+      <div class="frow"><label>Focus for this session</label><textarea id="inp-memo-member" placeholder="e.g. lower back today..." style="min-height:80px;"></textarea></div>
+      <div id="cbox-member" style="border:1px solid var(--border);padding:24px;margin:20px 0 24px;background:var(--warm);font-size:13px;"></div>
+      <div class="btn-row">
+        <button class="b-back" onclick="goTo(2)">← Back</button>
+        <button class="b-confirm" id="btn-confirm-member" onclick="submitMemberBooking()">Confirm Booking ✓</button>
+      </div>
+    </div>
+
+    <!-- sc4: Payment (QR only here) -->
+    <div class="fsc" id="sc4">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:18px;">Review your booking &amp; pay via PayNow</p>
+      <div class="cbox" id="cbox"></div>
+      <div class="pn-sec">
+        <div class="pn-lbl">Pay via PayNow · Singapore</div>
+        <div class="pn-qr" id="pn-qr-canvas"></div>
+        
+        <div class="pn-num">+65 9614 1012</div>
+        <div class="pn-hint">Scan with any Singapore banking app<br>Amount &amp; reference pre-filled</div>
+      </div>
+      <div class="pay-note"><p>After tapping <strong>Confirm Booking</strong>, complete the PayNow transfer above. We'll confirm your booking via WhatsApp once payment is received.<br><br>Reference: <strong id="pay-ref">YP-XXXXXX</strong></p></div>
+      <div class="cancel-policy">For cancellations, please contact us directly. Cancellations under 24 hours or no-shows are non-refundable.</div>
+      <div class="btn-row"><button class="b-back" onclick="goTo(3)">← Back</button><button class="b-confirm" id="btn-confirm" onclick="submitBooking()">Confirm Booking ✓</button></div>
+    </div>
+
+    <!-- Success -->
+    <div class="fsc" id="sc-ok">
+      <div class="success">
+        <div class="success-ring">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div id="ok-member" style="display:none;">
+          <h3>Booking confirmed!</h3>
+          <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">See you on the reformer.</p>
+          <div class="ok-detail" id="ok-detail" style="margin:20px 0;"></div>
+          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:16px;">We'll confirm your booking via WhatsApp shortly.</div>
+          <p style="font-size:11px;color:var(--muted);">Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</p>
+        </div>
+        <div id="ok-new">
+          <h3>Almost there!</h3>
+          <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">Your slot is temporarily held.</p>
+          <p style="font-size:13px;color:var(--soft);">Please complete your PayNow transfer to confirm your booking.</p>
+          <div class="ok-detail" id="ok-detail-new" style="margin:20px 0;"></div>
+          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:16px;">Once payment is received, we'll confirm your booking via WhatsApp.</div>
+          <p style="font-size:11px;color:var(--muted);">Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</p>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- ── LOGO SLOT ──────────────────────────────────────────────────────
-       Replace linden-logo.png in the repo root with your own artwork
-       (transparent PNG or SVG recommended). If the file is missing, a
-       dashed placeholder box shows instead so the layout never breaks. -->
-  <div class="nav-logo-slot">
-    <img src="linden-logo.png" alt="Linden Pilates" class="nav-logo-img"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <span class="nav-logo-placeholder" style="display:none;">Your logo here</span>
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="dash-hd">
+    <div class="eyebrow">Member Portal</div>
+    <h2>Welcome back, <span id="dash-name">—</span></h2>
   </div>
+  <div class="dash-cards">
+    <div class="dash-card highlight">
+      <div class="dash-card-lbl">Sessions remaining</div>
+      <div class="dash-card-val" id="dash-sessions">—</div>
+      <div class="dash-card-sub" id="dash-sessions-detail">In your current pack</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-card-lbl">Next booking</div>
+      <div class="dash-card-val" id="dash-next" style="font-size:22px;margin-top:6px;">—</div>
+      <div class="dash-card-sub" id="dash-next-time">No upcoming sessions</div>
+    </div>
+    <div class="dash-card">
+      <div class="dash-card-lbl">Total sessions</div>
+      <div class="dash-card-val" id="dash-total">—</div>
+      <div class="dash-card-sub">Sessions completed</div>
+    </div>
+  </div>
+  <div class="dash-section-title">Upcoming &amp; Recent Bookings</div>
+  <div class="booking-list" id="dash-bookings"></div>
+  <div style="margin-top:40px;">
+    <div class="dash-section-title">Book a Session</div>
+    <div class="member-booking-wrap">
+      <div id="member-cal-wrap">
+        <div class="schedule-note" style="margin-bottom:16px;">
+          <strong>Mon · Wed · Fri</strong> — Morning &nbsp;|&nbsp; <strong>Tue · Thu</strong> — Afternoon<br>
+          <span style="color:var(--muted);">Bookings by midnight the day before. Changes? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);text-decoration:none;">WhatsApp</a>.</span>
+        </div>
+        <div class="week-nav" style="margin-bottom:16px;">
+          <button id="mbtn-prev" onclick="memberPrevWeek()">← Prev</button>
+          <span class="week-label" id="mweek-label"></span>
+          <button onclick="memberNextWeek()">Next →</button>
+        </div>
+        <div class="day-cols" id="member-day-cols"></div>
+        <div id="member-slot-note" style="display:none;background:var(--linen);border-left:2px solid var(--taupe);padding:10px 16px;font-size:13px;color:var(--ink);margin-bottom:16px;"></div>
+      </div>
+      <div id="member-memo-wrap" style="display:none;">
+        <div style="background:var(--cream);border:1px solid var(--border);padding:18px 20px;margin-bottom:18px;font-size:13px;color:var(--soft);" id="member-confirm-detail"></div>
+        <div class="frow"><label>Focus for this session <span style="color:var(--muted);font-size:9px;text-transform:none;letter-spacing:0;">(optional)</span></label><textarea id="inp-memo-member2" placeholder="e.g. lower back today..." style="min-height:70px;"></textarea></div>
+        <div class="btn-row">
+          <button class="b-back" onclick="memberBackToCal()">← Back</button>
+          <button class="b-confirm" id="btn-member-book" onclick="submitMemberBookingInline()">Confirm Booking ✓</button>
+        </div>
+      </div>
+      <div id="member-success-wrap" style="display:none;text-align:center;padding:24px 0;">
+        <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--taupe);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:8px;">Booking confirmed!</div>
+        <div style="background:var(--cream);border:1px solid var(--border);padding:16px 20px;font-size:13px;color:var(--soft);line-height:2.2;text-align:left;margin:16px 0;" id="member-success-detail"></div>
+        <div style="font-size:12px;color:var(--muted);">We'll confirm your booking via WhatsApp shortly. Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</div>
+        <button class="btn-fill" style="margin-top:20px;" onclick="memberBookAgain()">Book Another Session</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <div class="nav-side-right nav-links">
-    <a href="https://lindenpilates.simplybook.asia" target="_blank" class="nav-cta">Book Now</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="#about">About</a>
+    <a href="#sessions">Pricing</a>
+  </div>
+  <div class="nav-center">
+    <a href="#home">
+      <img src="header_logo.png" class="nav-logo" alt="Linden Pilates"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="nav-brand-main" style="display:none;">Linden Pilates</span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <div id="nav-guest" style="display:flex;gap:16px;align-items:center;">
+      <a href="#" onclick="openLogin(event)">Member Login</a>
+      <a href="#" onclick="event.preventDefault();bookTrial()" class="nav-cta">Book a Trial</a>
+    </div>
+    <div id="nav-member" style="display:none;" class="nav-user">
+      <span class="nav-user-name" id="nav-user-name"></span>
+      <a href="#" onclick="showDashboard(event)">My Dashboard</a>
+      <button class="nav-logout" onclick="logout()">Sign out</button>
+    </div>
   </div>
 </nav>
 
@@ -375,25 +612,19 @@ footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:spac
   <!-- Top: description left, studio photo right -->
   <div class="hero-main">
     <div class="hero-left">
-      <div class="hero-tag">Reformer · Tower · Cadillac · Draycott</div>
+      <div class="hero-tag">Private Studio · Orchard · Draycott</div>
       <h1 class="hero-h1">Pilates built<br>around <em>you.</em></h1>
-      <p class="hero-desc">PMA certified <strong>Master Instructor with 14 years of experience</strong> and a background in Sports Science. Every 50-minute session is fully tailored — calm, focused, and real.</p>
+      <p class="hero-desc">Every 50-minute session is tailored to one body — yours. Calm, focused, fully-equipped 1:1 training, with <strong>10+ years of experience</strong> behind each session.</p>
       <p class="hero-studio-info">
-        <strong>📍 Quiet home studio</strong><br>
-        Reformer · Tower · Barre Bar<br>
-        Street parking available nearby<br>
+        <strong>📍 Quiet home-based studio · Orchard</strong><br>
         By appointment only
       </p>
-      <div class="hero-btns">
-        <a class="btn-fill" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:inline-block;">Book a Trial</a>
-        <a href="#about" class="btn-line">About</a>
-      </div>
     </div>
     <div class="hero-right">
-      <img src="IMG_1842_Original.jpeg" class="hero-photo" alt="Linden Pilates Studio"
+      <img src="main.jpeg" class="hero-photo" alt="Linden Pilates Studio"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hero-photo-ph" style="display:none;">
-        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
         <span>Studio Photo</span>
       </div>
     </div>
@@ -406,28 +637,28 @@ footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:spac
         <span class="sc-tag">First Time</span>
         <div class="sc-name">Trial Session</div>
         <div class="sc-div"></div>
-        <p class="sc-desc">New to Pilates or to my studio? A tailored intro session with body assessment and personalised movements based on your goals.</p>
-        <div class="sc-price">$90</div>
-        <div class="sc-sub">50 min · One-time rate</div>
-        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+        <p class="sc-desc">A 1:1 consultation and movement session to build body awareness — including a posture assessment, guided breathing, core engagement, and alignment principles tailored to your condition.</p>
+        <div class="sc-price">$70</div>
+        <div class="sc-sub">50 min · First visit only</div>
+        <button class="sc-btn" onclick="bookSession('Trial Session','$70')">Book</button>
       </div>
       <div class="sess-card">
         <span class="sc-tag">Regular</span>
         <div class="sc-name">Private Session</div>
         <div class="sc-div"></div>
-        <p class="sc-desc">Reformer &amp; Tower work tailored to you — posture, strength, pre/postnatal support, or rehab-focused movement.</p>
-        <div class="sc-price">$130</div>
+        <p class="sc-desc">A 1:1 session designed around your body, condition, and goals — whether posture alignment, core strength, pain relief, rehabilitation, or pre/postnatal care, in a private, focused environment.</p>
+        <div class="sc-price">$140</div>
         <div class="sc-sub">50 min · Per session</div>
-        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+        <button class="sc-btn" onclick="bookSession('Private Session','$140')">Book</button>
       </div>
       <div class="sess-card">
-        <span class="sc-tag">Best Value</span>
-        <div class="sc-name">10-Session Package</div>
+        <span class="sc-tag">Members</span>
+        <div class="sc-name">10-Session Pack</div>
         <div class="sc-div"></div>
-        <p class="sc-desc">Commit to your practice and save. 10 private sessions with full scheduling flexibility and priority booking.</p>
+        <p class="sc-desc">For those committed to a regular practice. Ten private sessions at a preferred rate, with priority scheduling — the way to see real, lasting change in your body.</p>
         <div class="sc-price">$1,200</div>
         <div class="sc-sub">10 × 50 min · $120/session</div>
-        <a class="sc-btn" href="https://lindenpilates.simplybook.asia" target="_blank" style="text-decoration:none;display:block;text-align:center;">Book</a>
+        <button class="sc-btn" onclick="openLogin(event)">Members Only</button>
       </div>
     </div>
   </div>
@@ -437,31 +668,48 @@ footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:spac
 <!-- ════════════════════════════════════════════════════════════════ ABOUT ══ -->
 <section class="about-section" id="about">
   <div class="about-photo">
-    <img src="IMG_2652.jpeg" alt="Yeji — Senior Pilates Instructor"
+    <img src="about.jpeg" alt="Yeji — Senior Pilates Instructor"
       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="about-photo-ph" style="display:none;">
-      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#628474" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       <span>Yeji's Photo</span>
     </div>
   </div>
   <div class="about-content">
     <div class="eyebrow">Senior Instructor</div>
     <h2>Movement that<br>fits your body.</h2>
-    <p>Hi, I'm Yeji — a PMA certified Master Pilates Instructor with 14 years of experience and a background in Sports Science, bringing both clinical knowledge and real-world coaching to every session.</p>
+    <p>Hi, I'm Yeji — a PMA certified Pilates instructor with over 10 years of experience and a background in Sports Science. I also work as a PE teacher at an international school, bringing both clinical knowledge and real-world coaching to every session.</p>
     <p>I offer 1:1 Reformer, Tower, and Barre Bar sessions in a quiet home studio by appointment. Every session is designed around you — your posture, history, and goals.</p>
     <div class="quote">"Each session is calm, focused, and built for real progress — not just on the reformer, but in everyday life."</div>
-    <div class="pills">
-      <span class="pill">Reformer &amp; Tower</span>
-      <span class="pill">Barre Bar</span>
-      <span class="pill">Posture Correction</span>
-      <span class="pill">Pre/Postnatal</span>
-      <span class="pill">Rehab-Focused</span>
-      <span class="pill">Sports Science</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ REVIEWS ══ -->
+<section class="reviews" id="reviews">
+  <div class="reviews-hd">
+    <div class="eyebrow">Member Reviews</div>
+    <h2>Loved by our members</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Placeholder review text — replace with a real member review. Yeji's sessions completely changed my posture and I feel stronger every week."</p>
+      <div class="review-name">— Member Name</div>
     </div>
-    <div class="photo-creds">
-      <div class="photo-cred"><div class="n">PMA</div><div class="l">Certified</div></div>
-      <div class="photo-cred"><div class="n">10+</div><div class="l">Years</div></div>
-      <div class="photo-cred"><div class="n">1:1</div><div class="l">Private only</div></div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Placeholder review text — replace with a real member review. The private studio is calm and beautiful, and every session is tailored to me."</p>
+      <div class="review-name">— Member Name</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Placeholder review text — replace with a real member review. After my pregnancy this was exactly the support my body needed."</p>
+      <div class="review-name">— Member Name</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Placeholder review text — replace with a real member review. Highly recommend — professional, warm, and truly one-on-one."</p>
+      <div class="review-name">— Member Name</div>
     </div>
   </div>
 </section>
@@ -472,52 +720,675 @@ footer{background:var(--ink);padding:52px 56px;display:flex;justify-content:spac
   <div class="faq-grid">
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Do I need prior Pilates experience?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Not at all. The Trial Session is designed for complete beginners. We start with a body assessment and build at your own pace.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What should I wear and bring?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Comfortable, form-fitting workout clothes. Grip socks are recommended — I have some available. Bring water and arrive 5 minutes early.</div></div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Where is the studio?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">A quiet private studio in the Draycott area, just off Orchard Road. The exact address is shared after booking confirmation.</div></div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Is there parking available?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes, parking is available nearby. Full directions are shared after booking confirmation.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Where is the studio?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">A quiet home-based studio in the Orchard area (Draycott). Orchard MRT is about an 8-minute walk. The exact address is shared after booking confirmation.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What is the cancellation policy?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Please contact us directly for any cancellations or changes. Late cancellations (under 24 hours) or no-shows are non-refundable.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Can I do sessions while pregnant?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — prenatal Pilates is one of my specialisms. Sessions are adapted for every trimester. Please mention your stage when booking.</div></div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received and you will receive a confirmation SMS.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received, and we'll send a WhatsApp confirmation.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Do 10-session packs expire?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">10-session packs are valid for 6 months from purchase. They are non-transferable and non-refundable once purchased.</div></div></div>
   </div>
 </section>
 
 <footer>
-  <div>
-    <div class="footer-logo-slot">
-      <img src="linden-logo.png" alt="Linden Pilates" class="footer-logo-img"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <span class="footer-logo-placeholder" style="display:none;">Your logo here</span>
-    </div>
-    <div class="fb-main">Linden Pilates</div>
-  </div>
+  <img src="Linden_logo.png" class="footer-logo" alt="Linden Pilates"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+  <div class="fb-main" style="display:none;">Linden Pilates</div>
   <div class="fi">
-    <p>Draycott · Off Orchard Road</p>
-    <p>Reformer · Tower · Barre Bar</p>
-    <p>Private studio · By appointment only</p>
-    <p>PMA Certified · Sports Science background</p>
+    <p>Private studio · Orchard · By appointment</p>
   </div>
 </footer>
 
-<!-- WhatsApp FAB -->
+<div class="adm-toggle"><a href="#" onclick="toggleAdm(event)">studio admin</a></div>
+<div class="adm-panel" id="adm">
+  <div class="adm-hd"><h2>Studio Admin</h2><button class="b-back" onclick="toggleAdm(event)">Close ✕</button></div>
+  <div class="adm-grid">
+    <div class="adm-card">
+      <h3>PayNow Settings</h3>
+      <span class="adm-lbl">PayNow Mobile Number</span><input class="adm-inp" id="adm-pn" placeholder="+6590000000">
+      <span class="adm-lbl" style="margin-top:10px;display:block;">Display Name</span><input class="adm-inp" id="adm-nm" placeholder="Yeji">
+      <button class="adm-save" onclick="savePN()">Save PayNow</button>
+    </div>
+    <div class="adm-card">
+      <h3>Block Specific Slots</h3>
+      <span class="adm-lbl">Date (e.g. Mon 23 Jun)</span><input class="adm-inp" id="adm-bd" placeholder="Mon 23 Jun">
+      <span class="adm-lbl">Time (e.g. 10:00 AM)</span><input class="adm-inp" id="adm-bt" placeholder="10:00 AM">
+      <button class="adm-save" onclick="addBlock()">Block This Slot</button>
+      <div class="blocked-list" id="blocked-list"></div>
+    </div>
+  </div>
+  <div class="adm-bookings">
+    <h3 style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:16px;">All Bookings</h3>
+    <div id="adm-bookings-list"><p style="font-size:13px;color:var(--muted);">Loading…</p></div>
+  </div>
+</div>
 
-<a href="https://wa.me/6596141012" target="_blank" aria-label="Chat on WhatsApp" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:9999;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+<!-- WhatsApp FAB -->
+<a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" aria-label="Chat on WhatsApp" style="position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:9999;text-decoration:none;transition:transform .2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>
 </a>
 
 <div class="toast" id="toast"></div>
 
 <script>
+// ══════════════════════════════════════════════════════════════════════════
+//  GOOGLE APPS SCRIPT BACKEND HELPER
+// ══════════════════════════════════════════════════════════════════════════
+async function gasCall(payload){
+  // text/plain 로 보내 Apps Script 의 CORS preflight 를 피합니다.
+  const res = await fetch(GAS_URL, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  });
+  return res.json();
+}
+
+// ── Config (PayNow 는 로컬에 저장) ─────────────────────────────────────────
+let CFG = { paynowNumber: PAYNOW_NUMBER, paynowName: PAYNOW_NAME };
+try { const s = localStorage.getItem('bp_cfg'); if(s) CFG = {...CFG,...JSON.parse(s)}; } catch(e) {}
+
+const SCHEDULE = {
+  1:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
+  3:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
+  5:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
+  2:['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],
+  4:['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],
+  6:['9:00 AM','10:00 AM','11:00 AM'],
+};
+const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let S = { sess:{name:'Trial Session',price:'$70'}, slot:null };
+let weekOffset = 0;
+let currentUser = null;
+let isMemberFlow = false;
+
+// 달력 가용성 캐시 (달력 렌더 전 매번 갱신)
+let CAL = { booked:[], blocked:[], loaded:false };
+let isSubmitting = false;   // 중복 제출 방지 가드
+// force=true 일 때만 서버 재요청. 평소엔 캐시 재사용 → 주 이동(Next/Prev) 즉시 반응.
+async function refreshCalData(force){
+  if(CAL.loaded && !force) return;
+  try{
+    const r = await gasCall({action:'calendar'});
+    if(r && r.ok){ CAL.booked=r.booked||[]; CAL.blocked=r.blocked||[]; CAL.loaded=true; }
+  }catch(e){ if(!CAL.loaded){ CAL.booked=[]; CAL.blocked=[]; } }
+}
+
+// ── Booking modal ─────────────────────────────────────────────────────────
+function openBookingModal() {
+  // 신규 전용 진입점 → Trial 예약으로 바로 (선택화면 sc0 제거됨)
+  if (!isMemberFlow) { bookTrial(); return; }
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBookingModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('booking-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeBookingModal();
+});
+
+function setNewClientMode() {
+  document.getElementById('steps-new').style.display = '';
+  document.getElementById('steps-member').style.display = 'none';
+  document.getElementById('member-booking-header').style.display = 'none';
+  document.getElementById('pick-grid-new').style.display = '';
+  document.getElementById('pick-grid-member').style.display = 'none';
+}
+
+// ── Login modal (PIN → Members 탭) ────────────────────────────────────────
+function openLogin(e) {
+  e?.preventDefault();
+  document.getElementById('login-modal').classList.add('open');
+  document.getElementById('login-pin').value = '';
+  document.getElementById('login-err').classList.remove('show');
+  setTimeout(() => document.getElementById('login-pin').focus(), 100);
+}
+function closeLogin() { document.getElementById('login-modal').classList.remove('open'); }
+
+async function doLogin() {
+  const pin = document.getElementById('login-pin').value.trim();
+  const err = document.getElementById('login-err');
+  err.classList.remove('show');
+  if (pin.length !== 4) { err.textContent = 'Please enter your 4-digit PIN.'; err.classList.add('show'); return; }
+  let r;
+  try { r = await gasCall({action:'login', pin:pin}); }
+  catch(e){ err.textContent='Could not connect. Please try again.'; err.classList.add('show'); return; }
+  if (!r || !r.ok) { err.textContent = 'PIN not recognised. Please check and try again.'; err.classList.add('show'); return; }
+  currentUser = r.member;               // {pin,name,phone,email,sessions_remaining}
+  try { localStorage.setItem('bp_member', JSON.stringify(currentUser)); } catch(e) {}
+  closeLogin();
+  loadUserProfile(currentUser);
+  setBookingMode(true);
+  showDashboard();
+  showToast('Welcome back, ' + currentUser.name + '!');
+}
+
+async function loadUserProfile(profile) {
+  const data = profile || currentUser;
+  if (!data) return;
+  document.getElementById('nav-user-name').textContent = data.name || 'Member';
+  document.getElementById('nav-guest').style.display = 'none';
+  document.getElementById('nav-member').style.display = 'flex';
+  document.getElementById('dash-name').textContent = data.name || 'Member';
+  const remaining = data.sessions_remaining || 0;
+  document.getElementById('dash-sessions').textContent = remaining;
+  document.getElementById('dash-sessions-detail').textContent = remaining + ' sessions remaining';
+  if (typeof memberInitCal === 'function') memberInitCal();
+  loadDashboardBookings();
+}
+
+// 대시보드: 이 회원의 예약 내역 불러오기 (Next booking / Total / 목록)
+function parseSessionDate(dateStr){
+  if(!dateStr) return null;
+  const parts=String(dateStr).split(' ');           // "Tue 1 Sep"
+  if(parts.length<3) return null;
+  const months={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  const today=new Date(); today.setHours(0,0,0,0);
+  const d=new Date(); d.setMonth(months[parts[2]]); d.setDate(parseInt(parts[1])); d.setHours(0,0,0,0);
+  if(d < new Date(today.getFullYear(),0,1)) d.setFullYear(d.getFullYear()+1);
+  return d;
+}
+async function loadDashboardBookings(){
+  if(!currentUser) return;
+  const list=document.getElementById('dash-bookings');
+  if(list) list.innerHTML='<div class="empty-state">Loading…</div>';
+  let r;
+  try{ r=await gasCall({action:'myBookings', phone:currentUser.phone||'', pin:currentUser.pin||''}); }catch(e){}
+  const data=(r&&r.ok&&r.bookings)?r.bookings:[];
+  const today=new Date(); today.setHours(0,0,0,0);
+  const withDate=data.map(b=>({...b,_d:parseSessionDate(b.session_date)})).filter(b=>b._d);
+  const upcoming=withDate.filter(b=>b._d>=today).sort((a,b)=>a._d-b._d);
+  const completed=withDate.filter(b=>b._d<today).sort((a,b)=>b._d-a._d);
+  // Next booking
+  const nextEl=document.getElementById('dash-next'), nextT=document.getElementById('dash-next-time');
+  if(upcoming[0]){ if(nextEl)nextEl.textContent=upcoming[0].session_date||'—'; if(nextT)nextT.textContent=upcoming[0].session_time||''; }
+  else { if(nextEl)nextEl.textContent='—'; if(nextT)nextT.textContent='No upcoming sessions'; }
+  // Total completed
+  const totEl=document.getElementById('dash-total'); if(totEl) totEl.textContent=completed.length;
+  // List
+  if(!list) return;
+  const all=[...upcoming, ...completed];
+  if(!all.length){ list.innerHTML='<div class="empty-state">No bookings yet. Book your first session below!</div>'; return; }
+  list.innerHTML=all.map(b=>{
+    const isPast=b._d<today;
+    const label=isPast?'Completed':(String(b.status).toLowerCase()==='confirmed'?'Confirmed':'Pending');
+    const cls=isPast?'confirmed':(String(b.status).toLowerCase()==='confirmed'?'confirmed':'pending');
+    return `<div class="booking-item" style="${isPast?'opacity:.6;':''}">
+      <div><div class="bi-date">${b.session_date||'—'} · ${b.session_time||''}</div><div class="bi-type">${b.session_type||'—'}</div></div>
+      <div style="text-align:right"><div class="bi-ref">${b.reference||''}</div><div class="bi-status ${cls}">${label}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function logout() {
+  currentUser=null;
+  try{localStorage.removeItem('bp_member');}catch(e){}
+  setBookingMode(false);
+  hideDashboard();
+  document.getElementById('nav-guest').style.display='flex';
+  document.getElementById('nav-member').style.display='none';
+  showToast('Signed out.');
+}
+
+function chooseNew() { setNewClientMode(); goTo(1); }
+function chooseMember() {
+  closeBookingModal();
+  if(currentUser) { showDashboard(); }
+  else { openLogin(); }
+}
+
+function setBookingMode(isMember) {
+  isMemberFlow=isMember;
+  if (!isMember) {
+    setNewClientMode();
+    document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
+    document.getElementById('sc1').classList.add('active');
+    const grids=document.querySelectorAll('#pick-grid-new .pick-card');
+    grids.forEach(c=>c.classList.remove('sel'));
+    if(grids[0]){grids[0].classList.add('sel');S.sess={name:'Trial Session',price:'$70'};}
+    S={sess:{name:'Trial Session',price:'$70'},slot:null};
+    weekOffset=0;
+  } else {
+    document.getElementById('steps-new').style.display='none';
+    document.getElementById('steps-member').style.display='';
+    document.getElementById('member-booking-header').style.display='';
+    document.getElementById('pick-grid-new').style.display='none';
+    document.getElementById('pick-grid-member').style.display='';
+    if(currentUser){
+      const total = currentUser.sessions_remaining || 0;
+      const rEl = document.getElementById('member-sess-remaining');
+      const dEl = document.getElementById('member-sess-detail');
+      if(rEl) rEl.textContent = total;
+      if(dEl) dEl.textContent = `${total} sessions remaining`;
+    }
+  }
+}
+
+function memberCalBack() { if(!isMemberFlow) goTo(1); }
+
+// ── Member inline calendar ────────────────────────────────────────────────
+let memberWeekOffset=0, memberSlot=null;
+
+function memberInitCal() {
+  memberWeekOffset=0; memberSlot=null;
+  document.getElementById('member-cal-wrap').style.display='';
+  document.getElementById('member-memo-wrap').style.display='none';
+  document.getElementById('member-success-wrap').style.display='none';
+  document.getElementById('member-slot-note').style.display='none';
+  renderMemberCal(true);   // 대시보드 진입/예약 후 → 최신 데이터 강제 갱신
+}
+function memberPrevWeek(){memberWeekOffset--;renderMemberCal();}   // 주 이동 → 캐시 재사용(즉시)
+function memberNextWeek(){memberWeekOffset++;renderMemberCal();}
+
+async function renderMemberCal(force) {
+  const container=document.getElementById('member-day-cols');
+  if(force && container) container.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--muted);font-size:12px;">Loading…</div>';
+  await refreshCalData(force);
+  const today=new Date(); today.setHours(0,0,0,0);
+  const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
+  const mon=getMemberStartMonday(memberWeekOffset);
+  document.getElementById('mbtn-prev').disabled=memberWeekOffset<=0;
+  const sun=new Date(mon); sun.setDate(mon.getDate()+6);
+  document.getElementById('mweek-label').textContent=`${mon.getDate()} ${MN[mon.getMonth()]} – ${sun.getDate()} ${MN[sun.getMonth()]}`;
+  const booked=CAL.booked; const blocked=CAL.blocked;
+  container.innerHTML='';
+  for(let d=0;d<7;d++){
+    const date=new Date(mon); date.setDate(mon.getDate()+d);
+    const dow=date.getDay(); const times=SCHEDULE[dow];
+    const dateStr=`${DN[dow]} ${date.getDate()} ${MN[date.getMonth()]}`;
+    const isPast=date<today;
+    const col=document.createElement('div'); col.className='day-col';
+    const isToday=date.getTime()===today.getTime();
+    const head=document.createElement('div'); head.className='day-head'+(isToday?' today':'');
+    head.innerHTML=`<div class="dn">${DN[dow]}</div><div class="dd">${date.getDate()}</div>`;
+    col.appendChild(head);
+    if(!times||isPast){const e=document.createElement('div');e.className='no-slots';e.textContent='—';col.appendChild(e);}
+    else{
+      let shown=0;
+      times.forEach(time=>{
+        const isBooked=booked.some(b=>b.session_date===dateStr&&b.session_time===time);
+        const isBlocked=blocked.some(b=>b.slot_date===dateStr&&b.slot_time===time);
+        // 예약됨·휴무 → 아예 숨김(렌더링 안 함)
+        if(isBooked||isBlocked) return;
+        const cutoff=isPastCutoff(date, time);
+        const btn=document.createElement('div'); btn.className='slot-btn'+(cutoff?' taken':'');
+        btn.innerHTML=`<div class="slot-time">${time}</div>${cutoff?`<div class="slot-taken-lbl">Closed</div>`:''}`;
+        if(!cutoff) btn.addEventListener('click',()=>{
+          document.querySelectorAll('#member-day-cols .slot-btn').forEach(b=>b.classList.remove('sel'));
+          btn.classList.add('sel'); memberSlot={date:dateStr,time};
+          const note=document.getElementById('member-slot-note');
+          note.style.display='block'; note.textContent=`Selected: ${dateStr} · ${time}`;
+          setTimeout(()=>{
+            document.getElementById('member-cal-wrap').style.display='none';
+            document.getElementById('member-memo-wrap').style.display='';
+            document.getElementById('member-confirm-detail').innerHTML=`<strong>Date</strong> ${dateStr}<br><strong>Time</strong> ${time}`;
+            document.getElementById('inp-memo-member2').value='';
+          },300);
+        });
+        col.appendChild(btn); shown++;
+      });
+      if(shown===0){const e=document.createElement('div');e.className='no-slots';e.textContent='—';col.appendChild(e);}
+    }
+    container.appendChild(col);
+  }
+}
+
+function memberBackToCal(){
+  document.getElementById('member-cal-wrap').style.display='';
+  document.getElementById('member-memo-wrap').style.display='none';
+  document.getElementById('member-slot-note').style.display='none';
+  document.querySelectorAll('#member-day-cols .slot-btn').forEach(b=>b.classList.remove('sel'));
+  memberSlot=null;
+}
+
+async function submitMemberBookingInline(){
+  if(isSubmitting) return;
+  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact us on WhatsApp.'); return; }
+  isSubmitting=true;
+  const btn=document.getElementById('btn-member-book'); btn.disabled=true; btn.textContent='Saving…';
+  const memo=document.getElementById('inp-memo-member2').value||'';
+  const ref='YP-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  let r;
+  try{
+    r = await gasCall({
+      action:'book',
+      pin: currentUser?.pin || '',
+      name: currentUser?.name || '—',
+      phone: currentUser?.phone || '—',
+      session_type:'Private Session',
+      session_date: memberSlot?.date,
+      session_time: memberSlot?.time,
+      reference: ref, notes: memo, status:'confirmed'
+    });
+  }catch(e){}
+  isSubmitting=false;
+  btn.disabled=false; btn.textContent='Confirm Booking ✓';
+  if(!r||!r.ok){ alert(r&&r.error?r.error:'Something went wrong. Please try again.'); return; }
+  CAL.loaded=false;   // 캐시 무효화 → 다음 달력 열 때 최신 반영
+  // 남은 횟수 갱신
+  if(typeof r.remaining==='number' && currentUser){
+    currentUser.sessions_remaining=r.remaining;
+    try{localStorage.setItem('bp_member',JSON.stringify(currentUser));}catch(e){}
+    const dEl=document.getElementById('dash-sessions'); if(dEl) dEl.textContent=r.remaining;
+    const dd=document.getElementById('dash-sessions-detail'); if(dd) dd.textContent=r.remaining+' sessions remaining';
+    const mEl=document.getElementById('member-sess-remaining'); if(mEl) mEl.textContent=r.remaining;
+  }
+  document.getElementById('member-memo-wrap').style.display='none';
+  document.getElementById('member-success-wrap').style.display='';
+  document.getElementById('member-success-detail').innerHTML=`<strong>Session</strong> Private Session<br><strong>Date & Time</strong> ${memberSlot?.date} · ${memberSlot?.time}`;
+  loadDashboardBookings();
+}
+function memberBookAgain(){memberInitCal();}
+
+// ── Step navigation ───────────────────────────────────────────────────────
+function goTo(n) {
+  document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
+  if(n==='ok'){document.getElementById('sc-ok').classList.add('active');return;}
+  document.getElementById('sc'+n).classList.add('active');
+  if(!isMemberFlow){
+    for(let i=1;i<=4;i++){
+      const el=document.getElementById('si'+i); if(!el) continue;
+      el.classList.remove('active','done');
+      if(i<n) el.classList.add('done'); else if(i===n) el.classList.add('active');
+    }
+  }
+  if(n===2){weekOffset=0; renderCal(true);}
+  if(n===4) buildPayment();
+}
+
+function goToAfterSlot(){
+  if(isMemberFlow){
+    document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
+    document.getElementById('sc3m').classList.add('active');
+    document.getElementById('si1m').classList.remove('active'); document.getElementById('si1m').classList.add('done');
+    document.getElementById('si2m').classList.add('active');
+    document.getElementById('cbox-member').innerHTML=[['Date',S.slot?.date||'—'],['Time',S.slot?.time||'—']]
+      .map(([l,v])=>`<div class="crow"><span class="clbl">${l}</span><span class="cval">${v}</span></div>`).join('');
+  } else { goTo(3); }
+}
+
+// ── Book session (날짜 단계로 바로 이동) ──────────────────────────────────
+function bookSession(name, price) {
+  S.sess={name,price}; S.slot=null;
+  document.querySelectorAll('#pick-grid-new .pick-card').forEach(e=>e.classList.remove('sel'));
+  document.querySelectorAll('#pick-grid-new .pick-card').forEach(e=>{
+    if(e.querySelector('.pc-name')?.textContent===name) e.classList.add('sel');
+  });
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  setNewClientMode();
+  weekOffset=0;
+  goTo(2);
+}
+
+// "Book a Trial" → 신규 전용, Trial 세션으로 바로 (선택화면 sc0 건너뜀)
+function bookTrial(){ bookSession('Trial Session','$70'); }
+
+// localStorage 세션 복원
+try {
+  const saved=localStorage.getItem('bp_member');
+  if(saved){currentUser=JSON.parse(saved);loadUserProfile(currentUser);setBookingMode(true);}
+} catch(e){}
+
+function showDashboard(e){e?.preventDefault();document.getElementById('dashboard').classList.add('open');document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});memberInitCal();}
+function hideDashboard(){document.getElementById('dashboard').classList.remove('open');}
+
+function pickSess(el,name,price){
+  const pg=el.closest('.pick-grid');
+  pg.querySelectorAll('.pick-card').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); S.sess={name,price};
+}
+
+// 멀티스텝(sc3m) 멤버 예약
+async function submitMemberBooking(){
+  if(isSubmitting) return;
+  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact us on WhatsApp.'); return; }
+  isSubmitting=true;
+  const btn=document.getElementById('btn-confirm-member'); btn.disabled=true; btn.textContent='Saving…';
+  const memo=document.getElementById('inp-memo-member').value||'';
+  const ref='YP-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  let r;
+  try{
+    r = await gasCall({
+      action:'book', pin: currentUser?.pin || '',
+      name: currentUser?.name || '—', phone: currentUser?.phone || '—',
+      session_type: S.sess.name, session_date: S.slot?.date, session_time: S.slot?.time,
+      reference: ref, notes: memo, status:'confirmed'
+    });
+  }catch(e){}
+  isSubmitting=false;
+  btn.disabled=false; btn.textContent='Confirm Booking ✓';
+  if(!r||!r.ok){ alert(r&&r.error?r.error:'Something went wrong. Please try again.'); return; }
+  CAL.loaded=false;   // 캐시 무효화
+  if(typeof r.remaining==='number' && currentUser){
+    currentUser.sessions_remaining=r.remaining;
+    try{localStorage.setItem('bp_member',JSON.stringify(currentUser));}catch(e){}
+    const dEl=document.getElementById('dash-sessions'); if(dEl) dEl.textContent=r.remaining;
+    const dd=document.getElementById('dash-sessions-detail'); if(dd) dd.textContent=r.remaining+' sessions remaining';
+    const mEl=document.getElementById('member-sess-remaining'); if(mEl) mEl.textContent=r.remaining;
+  }
+  document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sc-ok').classList.add('active');
+  for(let i=1;i<=2;i++){const el=document.getElementById('si'+i+'m');if(el){el.classList.remove('active');el.classList.add('done');}}
+  document.getElementById('ok-member').style.display='block';
+  document.getElementById('ok-new').style.display='none';
+  document.getElementById('ok-detail').innerHTML=`<strong>Date & Time</strong> ${S.slot?.date} · ${S.slot?.time}`;
+  loadDashboardBookings();
+}
+
+// ── Calendar ───────────────────────────────────────────────────────────────
+function getStartMonday(offset) {
+  const today=new Date(); today.setHours(0,0,0,0);
+  const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
+  const tw=tomorrow.getDay();
+  const mon=new Date(tomorrow);
+  if(tw===0) mon.setDate(tomorrow.getDate()+1);
+  else mon.setDate(tomorrow.getDate()-(tw-1));
+  mon.setHours(0,0,0,0);
+  const fri=new Date(mon); fri.setDate(mon.getDate()+4);
+  if(fri<tomorrow) mon.setDate(mon.getDate()+7);
+  mon.setDate(mon.getDate()+offset*7);
+  return mon;
+}
+function getMemberStartMonday(offset) { return getStartMonday(offset); }
+
+function prevWeek(){weekOffset--;renderCal();}
+function nextWeek(){weekOffset++;renderCal();}
+
+// "8:00 AM" → 자정 기준 분(minute)
+function parseSlotTime(t){
+  const m=/(\d+):(\d+)\s*(AM|PM)/i.exec(t||''); if(!m) return 0;
+  let h=parseInt(m[1],10); const min=parseInt(m[2],10); const ap=m[3].toUpperCase();
+  if(ap==='PM'&&h!==12) h+=12; if(ap==='AM'&&h===12) h=0;
+  return h*60+min;
+}
+
+// 지난 날짜/시간 슬롯 비활성화 (과거 날짜 전체 + 오늘 이미 지난 시간대)
+function isPastCutoff(date, time){
+  const now=new Date();
+  const d=new Date(date); d.setHours(0,0,0,0);
+  const t0=new Date(); t0.setHours(0,0,0,0);
+  if(d.getTime()<t0.getTime()) return true;              // 과거 날짜
+  if(d.getTime()===t0.getTime()){                        // 오늘 → 시간 확인
+    if(time==null) return false;
+    const mins=parseSlotTime(time);
+    return (now.getHours()*60+now.getMinutes())>=mins;   // 이미 시작/지난 슬롯
+  }
+  return false;                                          // 미래 날짜
+}
+
+async function renderCal(force){
+  const container=document.getElementById('day-cols');
+  if(force && container) container.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:24px;color:var(--muted);font-size:12px;">Loading…</div>';
+  await refreshCalData(force);
+  const mon=getStartMonday(weekOffset);
+  const today=new Date(); today.setHours(0,0,0,0);
+  const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
+
+  document.getElementById('btn-prev').disabled=weekOffset<=0;
+  const sun=new Date(mon); sun.setDate(mon.getDate()+6);
+  document.getElementById('week-label').textContent=`${mon.getDate()} ${MN[mon.getMonth()]} – ${sun.getDate()} ${MN[sun.getMonth()]}`;
+
+  document.getElementById('btn-n2').disabled=true;
+  document.getElementById('slot-selected-label').textContent='Select a date & time';
+  document.getElementById('slot-selected-label').classList.remove('selected');
+  S.slot=null;
+
+  container.innerHTML='';
+  const bookedData=CAL.booked, blockedData=CAL.blocked;
+
+  for(let d=0;d<7;d++){
+    const date=new Date(mon); date.setDate(mon.getDate()+d);
+    const dow=date.getDay(); const times=SCHEDULE[dow];
+    const dateStr=`${DN[dow]} ${date.getDate()} ${MN[date.getMonth()]}`;
+    const isPast=date<today;                             // 과거 날짜 전체 차단
+    const col=document.createElement('div'); col.className='day-col';
+    const isToday=date.getTime()===today.getTime();
+    const head=document.createElement('div'); head.className='day-head'+(isToday?' today':'');
+    head.innerHTML=`<div class="dn">${DN[dow]}</div><div class="dd">${date.getDate()}</div>`;
+    col.appendChild(head);
+
+    if(!times||isPast){
+      const e=document.createElement('div'); e.className='no-slots'; e.textContent='—'; col.appendChild(e);
+    } else {
+      let shown=0;
+      times.forEach(time=>{
+        const isBooked=bookedData.some(b=>b.session_date===dateStr&&b.session_time===time);
+        const isBlocked=blockedData.some(b=>b.slot_date===dateStr&&b.slot_time===time);
+        // 예약됨·휴무 → 아예 숨김
+        if(isBooked||isBlocked) return;
+        const cutoff=isPastCutoff(date, time);
+        const btn=document.createElement('div');
+        btn.className='slot-btn'+(cutoff?' taken':'');
+        btn.innerHTML=`<div class="slot-time">${time}</div>${cutoff?`<div class="slot-taken-lbl">Closed</div>`:''}`;
+        if(!cutoff){
+          btn.addEventListener('click', function(){
+            document.querySelectorAll('#day-cols .slot-btn').forEach(b=>b.classList.remove('sel'));
+            btn.classList.add('sel');
+            S.slot={date:dateStr, time:time};
+            document.getElementById('btn-n2').disabled=false;
+            const lbl=document.getElementById('slot-selected-label');
+            lbl.textContent=dateStr+' · '+time;
+            lbl.classList.add('selected');
+          });
+        }
+        col.appendChild(btn); shown++;
+      });
+      if(shown===0){const e=document.createElement('div');e.className='no-slots';e.textContent='—';col.appendChild(e);}
+    }
+    container.appendChild(col);
+  }
+}
+
+// ── Payment / QR ──────────────────────────────────────────────────────────
+function val3(){
+  if(!document.getElementById('inp-name').value.trim()||!document.getElementById('inp-phone').value.trim()){
+    alert('Please fill in your name and phone number.'); return;
+  }
+  goTo(4);
+}
+
+function buildPayment(){
+  const name=document.getElementById('inp-name').value;
+  const phone=document.getElementById('inp-phone').value;
+  const exp=document.getElementById('inp-exp').value||'—';
+  const memo=document.getElementById('inp-memo').value||'—';
+  const ref='YP-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  document.getElementById('pay-ref').textContent=ref;
+  const rows=[['Session',S.sess.name],['Date',S.slot?.date||'—'],['Time',S.slot?.time||'—'],['Name',name],['Phone',phone],['Experience',exp],['Notes',memo]];
+  let html=rows.map(([l,v])=>`<div class="crow"><span class="clbl">${l}</span><span class="cval">${v}</span></div>`).join('');
+  html+=`<div class="crow ctotal"><span class="clbl">Total</span><span class="cval">${S.sess.price}</span></div>`;
+  document.getElementById('cbox').innerHTML=html;
+  const qrContainer=document.getElementById('pn-qr-canvas');
+  qrContainer.innerHTML='';
+  const amount=S.sess.price.replace('$','').replace(',','');
+  const qrData=buildQRData(CFG.paynowNumber,amount,ref);
+  try {
+    new QRCode(qrContainer,{text:qrData,width:172,height:172,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});
+  } catch(e) {
+    qrContainer.innerHTML='<div style="width:172px;height:172px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);text-align:center;">Scan PayNow<br>+65 9614 1012</div>';
+  }
+}
+
+function buildQRData(mobile,amount,ref){
+  const fmt=(id,val)=>id+val.length.toString().padStart(2,'0')+val;
+  const pi='0201'+'03'+mobile.length.toString().padStart(2,'0')+mobile+'040000000000';
+  const paynow='26'+(('0012SG.PAYNOW'+pi).length+4).toString().padStart(2,'0')+'0012SG.PAYNOW'+pi;
+  const partial='000201'+paynow+fmt('52','0000')+fmt('53','702')+fmt('54',parseFloat(amount).toFixed(2))+fmt('58','SG')+fmt('59',CFG.paynowName.substring(0,25))+fmt('60','Singapore')+fmt('62',fmt('05',ref.substring(0,25)))+'6304';
+  let crc=0xFFFF;
+  for(let i=0;i<partial.length;i++){crc^=partial.charCodeAt(i)<<8;for(let j=0;j<8;j++)crc=(crc&0x8000)?((crc<<1)^0x1021):(crc<<1);}
+  return partial+((crc&0xFFFF)>>>0).toString(16).toUpperCase().padStart(4,'0');
+}
+
+// 신규 고객 예약 → Bookings 저장 후, 웹 화면 예약 완료 팝업 노출 (왓츠앱 이동 없음)
+async function submitBooking(){
+  if(isSubmitting) return;
+  isSubmitting=true;
+  const btn=document.getElementById('btn-confirm'); btn.disabled=true; btn.textContent='Saving…';
+  const name=document.getElementById('inp-name').value;
+  const phone=document.getElementById('inp-phone').value;
+  const ref=document.getElementById('pay-ref').textContent;
+  let r;
+  try{
+    r = await gasCall({
+      action:'book', pin:'',            // 신규 고객 → 멤버 차감 없음
+      name:name, phone:phone,
+      session_type:S.sess.name, session_date:S.slot?.date, session_time:S.slot?.time,
+      reference:ref, notes:'', status:'pending'
+    });
+  }catch(e){}
+  isSubmitting=false;
+  btn.disabled=false; btn.textContent='Confirm Booking ✓';
+  if(!r||!r.ok){ alert(r&&r.error?r.error:'Something went wrong. Please try again.'); return; }
+  CAL.loaded=false;   // 캐시 무효화
+  document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sc-ok').classList.add('active');
+  document.querySelectorAll('#steps-new .si').forEach(s=>{s.classList.remove('active');s.classList.add('done');});
+  document.getElementById('ok-member').style.display='none';
+  document.getElementById('ok-new').style.display='block';
+  document.getElementById('ok-detail-new').innerHTML=`<strong>Session</strong> ${S.sess.name}<br><strong>Date & Time</strong> ${S.slot?.date} · ${S.slot?.time}<br><strong>Name</strong> ${name}`;
+}
+
 function toggleFaq(el){
-  const isOpen = el.classList.contains("open");
-  document.querySelectorAll(".faq-item").forEach(f=>f.classList.remove("open"));
-  if(!isOpen) el.classList.add("open");
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!isOpen) el.classList.add('open');
 }
-function showToast(msg){
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"), 3000);
+
+// ── Admin panel ───────────────────────────────────────────────────────────
+function toggleAdm(e){
+  e.preventDefault(); const p=document.getElementById('adm'); p.classList.toggle('open');
+  if(p.classList.contains('open')){
+    document.getElementById('adm-pn').value=CFG.paynowNumber;
+    document.getElementById('adm-nm').value=CFG.paynowName;
+    loadBlockedSlots(); loadAllBookings(); p.scrollIntoView({behavior:'smooth'});
+  }
 }
+function savePN(){
+  CFG.paynowNumber=document.getElementById('adm-pn').value.trim();
+  CFG.paynowName=document.getElementById('adm-nm').value.trim();
+  try{localStorage.setItem('bp_cfg',JSON.stringify(CFG));}catch(e){}
+  showToast('PayNow settings saved!');
+}
+// 휴무 슬롯은 구글 시트 "Blocked" 탭에서 직접 관리합니다.
+async function addBlock(){
+  alert('휴무 슬롯은 구글 시트 "Blocked" 탭에서 직접 추가/삭제하세요.\n(열: slot_date, slot_time · 예: Mon 23 Jun / 10:00 AM)');
+}
+async function loadBlockedSlots(){
+  await refreshCalData();
+  const el=document.getElementById('blocked-list');
+  if(!CAL.blocked.length){el.innerHTML='<div class="blocked-item" style="justify-content:center;color:var(--muted);">No blocked slots</div>';return;}
+  el.innerHTML=CAL.blocked.map(b=>`<div class="blocked-item"><span>${b.slot_date} · ${b.slot_time}</span></div>`).join('');
+}
+async function loadAllBookings(){
+  let r; try{ r=await gasCall({action:'calendar'}); }catch(e){}
+  const el=document.getElementById('adm-bookings-list');
+  const data=(r&&r.booked)||[];
+  if(!data.length){el.innerHTML='<p style="font-size:13px;color:var(--muted);">No bookings yet (자세한 내역은 구글 시트 Bookings 탭 참고).</p>';return;}
+  el.innerHTML=`<table class="adm-bookings-table"><thead><tr><th>Date</th><th>Time</th></tr></thead><tbody>${data.map(b=>`<tr><td>${b.session_date||'—'}</td><td>${b.session_time||'—'}</td></tr>`).join('')}</tbody></table><p style="font-size:12px;color:var(--muted);margin-top:10px;">이름·전화·레퍼런스 등 전체 예약 상세는 구글 시트 Bookings 탭에 있습니다.</p>`;
+}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 </script>
 </body>
 </html>
