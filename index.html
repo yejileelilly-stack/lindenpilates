@@ -85,6 +85,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .sc-desc{font-size:15px;color:var(--soft);line-height:1.85;margin-bottom:22px;flex:1;transition:color .3s;}
 .sc-price{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ink);transition:color .3s;}
 .sc-sub{font-size:13px;color:var(--muted);margin-top:5px;transition:color .3s;}
+.sc-offer{font-size:12.5px;color:var(--taupe);line-height:1.6;background:var(--green-light);border-left:2px solid var(--green);padding:10px 12px;margin-bottom:18px;border-radius:3px;}
+.sc-offer strong{color:var(--ink);font-weight:600;}
+.sess-card:hover .sc-offer{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);}
+.sess-card:hover .sc-offer strong{color:#fff;}
 .sc-btn{margin-top:20px;padding:13px 0;background:transparent;border:1.5px solid var(--border);color:var(--soft);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:color .3s,border-color .3s,background .3s;}
 .sc-btn:hover{color:inherit;}
 
@@ -455,7 +459,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="fsc" id="sc2">
       <div class="schedule-note">
         <div class="sched-hours"><strong>Mon · Wed · Fri</strong> &nbsp;8–11am<br><strong>Tue · Thu</strong> &nbsp;3–7pm<br><strong>Sat</strong> &nbsp;9–11am</div>
-        <div class="sched-book">📅 &nbsp;Book from tomorrow onwards<br>💬 &nbsp;Need today? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a></div>
+        <div class="sched-book">🌿 &nbsp;Sessions begin <strong>28 September</strong><br>💬 &nbsp;Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a></div>
       </div>
       <!-- Selected slot summary + clearly-labeled continue button -->
       <div class="cal-topnav">
@@ -678,6 +682,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="sc-name">10-Session Pack</div>
         <div class="sc-div"></div>
         <p class="sc-desc">For those committed to a regular practice. Ten private sessions at a preferred rate, with priority scheduling — the way to see real, lasting change in your body.</p>
+        <div class="sc-offer">🎁 Opening offer — register in October and get <strong>11 sessions</strong> (one on us).</div>
         <div class="sc-price">$1,200</div>
         <div class="sc-sub">10 × 50 min · $120/session</div>
         <button class="sc-btn" onclick="openLogin(event)">Members Only</button>
@@ -702,7 +707,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <h2>Movement that<br>fits your body.</h2>
     <p>Hi, I'm Yeji — a PMA certified Pilates instructor with over 10 years of experience and a background in Sports Science. I also work as a PE teacher at an international school, bringing both clinical knowledge and real-world coaching to every session.</p>
     <p>I offer 1:1 Reformer, Tower, and Barre Bar sessions in a quiet home studio by appointment. Every session is designed around you — your posture, history, and goals.</p>
-    <div class="quote">"Each session is calm, focused, and built for real progress — not just on the reformer, but in everyday life."</div>
+    <div class="quote">"I named the studio after the linden tree — long a symbol of calm and healing."</div>
   </div>
 </section>
 
@@ -715,23 +720,23 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Placeholder review text — replace with a real member review. Yeji's sessions completely changed my posture and I feel stronger every week."</p>
-      <div class="review-name">— Member Name</div>
+      <p class="review-text">"I've trained 1:1 with Yeji for over a year. She tailors every session to my body — my posture and core strength have improved so much, and each class feels like catching up with a friend."</p>
+      <div class="review-name">— J.L</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Placeholder review text — replace with a real member review. The private studio is calm and beautiful, and every session is tailored to me."</p>
-      <div class="review-name">— Member Name</div>
+      <p class="review-text">"After a detailed posture analysis, Yeji worked precisely on my weak spots and corrected my form. I especially loved the practical tips for keeping good posture in daily life. 🫶"</p>
+      <div class="review-name">— J.J</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Placeholder review text — replace with a real member review. After my pregnancy this was exactly the support my body needed."</p>
-      <div class="review-name">— Member Name</div>
+      <p class="review-text">"My daughter's posture had become badly hunched with scoliosis from years of studying. After working with Yeji, her back straightened so much she actually grew over 2cm taller. Thank you, Yeji ❤️"</p>
+      <div class="review-name">— E.L</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Placeholder review text — replace with a real member review. Highly recommend — professional, warm, and truly one-on-one."</p>
-      <div class="review-name">— Member Name</div>
+      <p class="review-text">"My wife and I love it here. Yeji is insightful and taught us to self-correct our posture rather than just follow cues — we improved almost instantly. Highly recommended."</p>
+      <div class="review-name">— K.Y</div>
     </div>
   </div>
 </section>
@@ -778,6 +783,21 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="adm-bookings">
     <h3 style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--taupe);margin-bottom:16px;">All Bookings</h3>
     <div id="adm-bookings-list"><p style="font-size:13px;color:var(--muted);">Loading…</p></div>
+  </div>
+</div>
+
+<!-- Soft-launch popup -->
+<div id="launch-popup" style="display:none;position:fixed;inset:0;background:rgba(45,52,45,.55);z-index:10000;align-items:center;justify-content:center;padding:24px;">
+  <div style="background:var(--white);max-width:420px;width:100%;padding:44px 38px 36px;border-radius:8px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    <button onclick="closeLaunchPopup()" aria-label="Close" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;">×</button>
+    <div style="font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-bottom:16px;">🌿 Now Open for Booking</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:16px;">Welcome to<br>Linden Pilates</h3>
+    <p style="font-size:15px;color:var(--soft);line-height:1.8;margin-bottom:20px;">We're in soft launch — sessions officially begin <strong style="color:var(--ink);">28 September</strong>. Bookings are open now, so you can reserve your first session ahead of time.</p>
+    <div style="background:var(--green-light);border:1px solid var(--green);border-radius:6px;padding:16px 18px;margin-bottom:26px;">
+      <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--taupe);font-weight:600;margin-bottom:6px;">🎁 Opening Offer</div>
+      <p style="font-size:14px;color:var(--ink);line-height:1.7;margin:0;">Try a trial, then register for a 10-session pack in October — and get an extra session. <strong>11 for the price of 10.</strong></p>
+    </div>
+    <button onclick="closeLaunchPopup()" style="background:var(--ink);color:var(--white);border:none;padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:4px;">Explore the studio</button>
   </div>
 </div>
 
@@ -1227,13 +1247,19 @@ function parseSlotTime(t){
   return h*60+min;
 }
 
-// 지난 날짜/시간 슬롯 비활성화 (과거 날짜 전체 + 오늘 이미 지난 시간대)
+// 소프트런칭: 정식 오픈일 이전 예약 차단
+const OPENING_DATE = new Date(2026, 8, 28); // 2026-09-28 (월은 0부터 → 8=9월)
+OPENING_DATE.setHours(0,0,0,0);
+
+// 오픈일 이전 + 과거 날짜 슬롯 비활성화
 function isPastCutoff(date, time){
   const d=new Date(date); d.setHours(0,0,0,0);
   const t0=new Date(); t0.setHours(0,0,0,0);
   const tomorrow=new Date(t0); tomorrow.setDate(t0.getDate()+1);
-  // 오늘 및 과거 → 예약 불가 (당일 예약은 WhatsApp 문의)
+  // 내일 이전(오늘·과거) → 불가
   if(d.getTime()<tomorrow.getTime()) return true;
+  // 정식 오픈일 이전 → 불가 (소프트런칭)
+  if(d.getTime()<OPENING_DATE.getTime()) return true;
   return false;
 }
 
@@ -1431,6 +1457,22 @@ async function loadAllBookings(){
   el.innerHTML=`<table class="adm-bookings-table"><thead><tr><th>Date</th><th>Time</th></tr></thead><tbody>${data.map(b=>`<tr><td>${b.session_date||'—'}</td><td>${b.session_time||'—'}</td></tr>`).join('')}</tbody></table><p style="font-size:12px;color:var(--muted);margin-top:10px;">이름·전화·레퍼런스 등 전체 예약 상세는 구글 시트 Bookings 탭에 있습니다.</p>`;
 }
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// Soft-launch popup — show once per browser session
+function closeLaunchPopup(){
+  const p=document.getElementById('launch-popup');
+  if(p) p.style.display='none';
+  document.body.style.overflow='';
+  try{ sessionStorage.setItem('lindenLaunchSeen','1'); }catch(e){}
+}
+window.addEventListener('load',function(){
+  let seen=false;
+  try{ seen=sessionStorage.getItem('lindenLaunchSeen')==='1'; }catch(e){}
+  if(!seen){
+    const p=document.getElementById('launch-popup');
+    if(p){ p.style.display='flex'; }
+  }
+});
 </script>
 </body>
 </html>
