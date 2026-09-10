@@ -197,8 +197,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .week-nav button:disabled{opacity:.3;cursor:not-allowed;}
 .week-label{font-size:15px;color:var(--ink);font-weight:500;letter-spacing:.3px;}
 .day-cols{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:18px;}
-.day-col{display:flex;flex-direction:column;gap:7px;}
-.day-head{text-align:center;padding-bottom:11px;border-bottom:1.5px solid var(--border);margin-bottom:4px;}
+.day-col{display:flex;flex-direction:column;gap:7px;max-height:340px;overflow-y:auto;padding-right:2px;}
+.day-col::-webkit-scrollbar{width:4px;}
+.day-col::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.day-head{position:sticky;top:0;background:var(--white);z-index:1;text-align:center;padding-bottom:11px;border-bottom:1.5px solid var(--border);margin-bottom:4px;}
 .day-head .dn{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
 .day-head .dd{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);line-height:1;}
 .day-head.today{border-bottom-color:var(--taupe);}
@@ -458,8 +460,8 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <!-- sc2: Date & Time -->
     <div class="fsc" id="sc2">
       <div class="schedule-note">
-        <div class="sched-hours"><strong>Mon · Wed · Fri</strong> &nbsp;8–11am<br><strong>Tue · Thu</strong> &nbsp;3–7pm<br><strong>Sat</strong> &nbsp;9–11am</div>
-        <div class="sched-book">🌿 &nbsp;Sessions begin <strong>28 September</strong><br>💬 &nbsp;Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a></div>
+        <div class="sched-hours"><strong>Mon · Fri</strong> &nbsp;8am–1pm<br><strong>Tue · Thu</strong> &nbsp;1–7pm<br><strong>Wed</strong> &nbsp;8am–8pm<br><strong>Sat</strong> &nbsp;9am–12pm</div>
+        <div class="sched-book">💬 &nbsp;Need a time that's not listed?<br><a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a> — we'll do our best to fit you in.</div>
       </div>
       <!-- Selected slot summary + clearly-labeled continue button -->
       <div class="cal-topnav">
@@ -791,11 +793,11 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div style="background:var(--white);max-width:420px;width:100%;padding:44px 38px 36px;border-radius:8px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);">
     <button onclick="closeLaunchPopup()" aria-label="Close" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;">×</button>
     <div style="font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-bottom:16px;">🌿 Now Open for Booking</div>
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:16px;">Welcome to<br>Linden Pilates</h3>
-    <p style="font-size:15px;color:var(--soft);line-height:1.8;margin-bottom:20px;">We're in soft launch — sessions officially begin <strong style="color:var(--ink);">28 September</strong>. Bookings are open now, so you can reserve your first session ahead of time.</p>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:14px;">Welcome to<br>Linden Pilates</h3>
+    <p style="font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:22px;">We're in soft launch — sessions begin <strong style="color:var(--ink);">28 September</strong>. Book your first session now.</p>
     <div style="background:var(--green-light);border:1px solid var(--green);border-radius:6px;padding:16px 18px;margin-bottom:26px;">
       <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--taupe);font-weight:600;margin-bottom:6px;">🎁 Opening Offer</div>
-      <p style="font-size:14px;color:var(--ink);line-height:1.7;margin:0;">Try a trial, then register for a 10-session pack in October — and get an extra session. <strong>11 for the price of 10.</strong></p>
+      <p style="font-size:14px;color:var(--ink);line-height:1.6;margin:0;">Register for a 10-pack in October and get your <strong>11th session free.</strong></p>
     </div>
     <button onclick="closeLaunchPopup()" style="background:var(--ink);color:var(--white);border:none;padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:4px;">Explore the studio</button>
   </div>
@@ -827,12 +829,12 @@ let CFG = { paynowNumber: PAYNOW_NUMBER, paynowName: PAYNOW_NAME, whatsappNumber
 try { const s = localStorage.getItem('bp_cfg'); if(s) CFG = {...CFG,...JSON.parse(s)}; } catch(e) {}
 
 const SCHEDULE = {
-  1:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
-  3:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
-  5:['8:00 AM','9:00 AM','10:00 AM','11:00 AM'],
-  2:['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],
-  4:['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],
-  6:['9:00 AM','10:00 AM','11:00 AM'],
+  1:['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM'],                                   // Mon
+  5:['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM'],                                   // Fri
+  2:['1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],                  // Tue
+  4:['1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'],                  // Thu
+  3:['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'], // Wed full day
+  6:['9:00 AM','10:00 AM','11:00 AM'],                                                         // Sat
 };
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -990,7 +992,7 @@ function setBookingMode(isMember) {
     grids.forEach(c=>c.classList.remove('sel'));
     if(grids[0]){grids[0].classList.add('sel');S.sess={name:'Trial Session',price:'$70'};}
     S={sess:{name:'Trial Session',price:'$70'},slot:null};
-    weekOffset=0;
+    weekOffset=getOpeningWeekOffset();
   } else {
     document.getElementById('steps-new').style.display='none';
     document.getElementById('steps-member').style.display='';
@@ -1135,7 +1137,7 @@ function goTo(n) {
       if(i<n) el.classList.add('done'); else if(i===n) el.classList.add('active');
     }
   }
-  if(n===2){weekOffset=0; renderCal(true);}
+  if(n===2){weekOffset=getOpeningWeekOffset(); renderCal(true);}
   if(n===4) buildPayment();
 }
 
@@ -1161,7 +1163,7 @@ function bookSession(name, price) {
   document.body.style.overflow='hidden';
   var _f=document.getElementById('wa-float'); if(_f) _f.style.display='none';
   setNewClientMode();
-  weekOffset=0;
+  weekOffset=getOpeningWeekOffset();
   goTo(2);
 }
 
@@ -1221,6 +1223,20 @@ async function submitMemberBooking(){
 }
 
 // ── Calendar ───────────────────────────────────────────────────────────────
+// 오픈일(28 Sep)이 포함된 주까지의 offset 계산 → 달력이 그 주부터 시작
+function getOpeningWeekOffset(){
+  const base=getStartMonday(0);           // 현재 기준 첫 주 월요일
+  const target=new Date(OPENING_DATE);    // 오픈일
+  // 오픈일이 속한 주의 월요일
+  const tw=target.getDay();
+  const tmon=new Date(target);
+  if(tw===0) tmon.setDate(target.getDate()-6);
+  else tmon.setDate(target.getDate()-(tw-1));
+  tmon.setHours(0,0,0,0);
+  const diffWeeks=Math.round((tmon.getTime()-base.getTime())/(7*24*3600*1000));
+  return diffWeeks>0?diffWeeks:0;
+}
+
 function getStartMonday(offset) {
   const today=new Date(); today.setHours(0,0,0,0);
   const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
@@ -1271,7 +1287,7 @@ async function renderCal(force){
   const today=new Date(); today.setHours(0,0,0,0);
   const tomorrow=new Date(today); tomorrow.setDate(today.getDate()+1);
 
-  document.getElementById('btn-prev').disabled=weekOffset<=0;
+  document.getElementById('btn-prev').disabled=weekOffset<=getOpeningWeekOffset();
   const sun=new Date(mon); sun.setDate(mon.getDate()+6);
   document.getElementById('week-label').textContent=`${mon.getDate()} ${MN[mon.getMonth()]} – ${sun.getDate()} ${MN[sun.getMonth()]}`;
 
