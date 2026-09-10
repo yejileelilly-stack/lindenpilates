@@ -206,13 +206,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .day-head .dd{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);line-height:1;}
 .day-head.today{border-bottom-color:var(--taupe);}
 .day-head.today .dd,.day-head.today .dn{color:var(--taupe);font-weight:500;}
-.slot-btn{border:1.5px solid var(--border);border-radius:4px;padding:15px 2px;text-align:center;cursor:pointer;transition:all .18s;background:var(--white);}
+.slot-btn{border:1.5px solid var(--border);border-radius:4px;padding:11px 2px;text-align:center;cursor:pointer;transition:all .18s;background:var(--white);}
 .slot-btn:hover:not(.taken){border-color:var(--taupe);background:var(--taupe);}
 .slot-btn:hover:not(.taken) .slot-time{color:var(--white);}
 .slot-btn.sel{border-color:var(--taupe);background:var(--taupe);box-shadow:0 2px 8px rgba(98,132,116,.3);}
 .slot-btn.sel .slot-time{color:var(--white);font-weight:600;}
 .slot-btn.taken{opacity:.4;cursor:not-allowed;pointer-events:none;background:var(--cream);border-color:var(--cream);border-style:dashed;}
-.slot-time{font-size:15px;color:var(--soft);font-weight:400;transition:color .18s;}
+.slot-time{font-size:13px;color:var(--soft);font-weight:400;transition:color .18s;}
 .slot-taken-lbl{font-size:9px;color:var(--muted);margin-top:1px;}
 .no-slots{font-size:10px;color:var(--muted);text-align:center;padding:14px 0;opacity:.4;}
 
@@ -462,7 +462,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="fsc" id="sc2">
       <div class="schedule-note">
         <div class="sched-hours"><strong>Mon · Fri</strong> &nbsp;8am–1pm<br><strong>Tue · Thu</strong> &nbsp;1–7pm<br><strong>Wed</strong> &nbsp;8am–8pm<br><strong>Sat</strong> &nbsp;9am–12pm</div>
-        <div class="sched-book">💬 &nbsp;Need a time that's not listed?<br><a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a> — we'll do our best to fit you in.</div>
+        <div class="sched-book">💬 &nbsp;Need a time that's not listed?<br><a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a></div>
       </div>
       <!-- Selected slot summary + clearly-labeled continue button -->
       <div class="cal-topnav">
@@ -537,8 +537,11 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
           <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">Your slot is temporarily held.</p>
           <p style="font-size:13px;color:var(--soft);">Please complete your PayNow transfer to confirm your booking.</p>
           <div class="ok-detail" id="ok-detail-new" style="margin:20px 0;"></div>
-          <a id="wa-notify-btn" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:17px 20px;font-family:'DM Sans',sans-serif;font-size:14px;letter-spacing:.3px;font-weight:600;margin-bottom:14px;border-radius:6px;box-shadow:0 3px 12px rgba(37,211,102,.3);">💬 Send my booking on WhatsApp</a>
-          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:8px;">After paying, tap the green button — it sends your details to us so we can confirm your slot and reply with everything you need. ✨</div>
+          <a id="wa-notify-btn" href="#" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:9px;background:var(--ink);color:#fff;text-decoration:none;padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;font-weight:500;margin-bottom:14px;border-radius:6px;transition:background .2s;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>
+            Send booking details
+          </a>
+          <div style="font-size:12px;color:var(--soft);line-height:1.8;margin-bottom:8px;">After paying, tap here to send us your booking details. We'll confirm your slot on WhatsApp.</div>
         </div>
       </div>
     </div>
