@@ -336,21 +336,39 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .nav-left{display:none;}
   .nav-center{justify-self:start;}
   .nav-logo{height:34px;}
-  .nav-right{gap:12px;}
-  .nav-right a.nav-cta{padding:8px 14px;font-size:9px;letter-spacing:1px;}
-  #nav-guest a:not(.nav-cta){font-size:10px;letter-spacing:1px;}
-  .nav-user{gap:8px;}
-  #nav-guest{gap:10px!important;}
+  .nav-right{gap:12px;align-items:center;}
+  #nav-guest{gap:12px!important;align-items:center;}
+  #nav-guest a:not(.nav-cta){font-size:11px;letter-spacing:1px;line-height:1;display:flex;align-items:center;}
+  .nav-right a.nav-cta{padding:9px 14px;font-size:10px;letter-spacing:1px;line-height:1;display:flex;align-items:center;}
+  .nav-user{gap:10px;align-items:center;}
   .hero-main{grid-template-columns:1fr;}
   .hero-left{padding:48px 24px 32px;}
   .hero-specialties{font-size:11.5px;line-height:1.9;}
   .hero-right{min-height:260px;}
   .sess-grid{grid-template-columns:1fr;}
-  .sess-card{border-right:none;border-bottom:1px solid var(--border);}
+  .sess-card{border-right:none;border-bottom:1px solid var(--border);padding:20px 22px;}
   .sess-card:last-child{border-bottom:none;}
+  .sc-name{font-size:22px;margin-bottom:6px;}
+  .sc-desc{font-size:13px;line-height:1.6;margin-bottom:12px;}
+  .sc-price{font-size:24px;}
+  .sc-sub{font-size:12px;}
+  .sc-tag{font-size:10px;margin-bottom:8px;}
+  .sc-div{margin-bottom:10px;}
+  .sc-btn{margin-top:14px;padding:11px 0;}
+  .sc-offer{font-size:11.5px;padding:8px 10px;margin-bottom:12px;}
   .about-section{grid-template-columns:1fr;}
-  .about-photo{min-height:300px;}
-  .about-content{padding:48px 24px;}
+  .about-photo{min-height:240px;max-height:300px;}
+  .about-content{padding:36px 24px;}
+  .about-content h2{font-size:34px;margin-bottom:14px;}
+  .about-content p{font-size:14px;line-height:1.75;margin-bottom:12px;}
+  .quote{font-size:19px;margin-top:18px;}
+  .linden-note{font-size:11px;margin-top:14px;}
+  .reviews{padding:56px 24px;}
+  .reviews-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .review-card{padding:18px 16px;}
+  .review-text{font-size:12.5px;line-height:1.6;margin-bottom:12px;}
+  .review-stars{font-size:13px;margin-bottom:10px;}
+  .review-name{font-size:11px;}
   .faq{padding:72px 24px;}
   .faq-grid{grid-template-columns:1fr;}
   .bk-wrap{padding:32px 24px;}
@@ -462,7 +480,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="fsc" id="sc2">
       <div class="schedule-note">
         <div class="sched-hours"><strong>Mon · Fri</strong> &nbsp;8am–1pm<br><strong>Tue · Thu</strong> &nbsp;1–7pm<br><strong>Wed</strong> &nbsp;8am–8pm<br><strong>Sat</strong> &nbsp;9am–12pm</div>
-        <div class="sched-book">💬 &nbsp;Need a time that's not listed?<br><a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message us on WhatsApp</a></div>
+        <div class="sched-book">💬 &nbsp;Need a time that's not listed?<br><a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank">Message me on WhatsApp</a></div>
       </div>
       <!-- Selected slot summary + clearly-labeled continue button -->
       <div class="cal-topnav">
@@ -515,7 +533,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="pn-hint">Scan with any Singapore banking app<br>Amount &amp; reference pre-filled</div>
       </div>
       <div class="pay-note"><p><strong>1.</strong> &nbsp;Scan the QR above with your banking app and complete the PayNow transfer.<br><strong>2.</strong> &nbsp;Tap <strong>Confirm Booking</strong> below to hold your slot.<br><br>Once payment is received, we'll confirm your booking via WhatsApp.<br><br>Reference: <strong id="pay-ref">YP-XXXXXX</strong></p></div>
-      <div class="cancel-policy">For cancellations, please contact us directly. Cancellations under 24 hours or no-shows are non-refundable.</div>
+      <div class="cancel-policy">For cancellations, please contact me directly. Cancellations under 24 hours or no-shows are non-refundable.</div>
       <div class="btn-row"><button class="b-back" onclick="goTo(3)">← Back</button><button class="b-confirm" id="btn-confirm" onclick="submitBooking()">Confirm Booking ✓</button></div>
     </div>
 
@@ -529,7 +547,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
           <h3>Booking confirmed!</h3>
           <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">See you on the reformer.</p>
           <div class="ok-detail" id="ok-detail" style="margin:20px 0;"></div>
-          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:16px;">We'll confirm your booking via WhatsApp shortly.</div>
+          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:16px;">I'll confirm your booking via WhatsApp shortly.</div>
           <p style="font-size:11px;color:var(--muted);">Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</p>
         </div>
         <div id="ok-new">
@@ -541,7 +559,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
             <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>
             Send booking details
           </a>
-          <div style="font-size:12px;color:var(--soft);line-height:1.8;margin-bottom:8px;">After paying, tap here to send us your booking details. We'll confirm your slot on WhatsApp.</div>
+          <div style="font-size:12px;color:var(--soft);line-height:1.8;margin-bottom:8px;">After paying, tap here to send me your booking details. I'll confirm your slot on WhatsApp.</div>
         </div>
       </div>
     </div>
@@ -603,7 +621,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         </div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:8px;">Booking confirmed!</div>
         <div style="background:var(--cream);border:1px solid var(--border);padding:16px 20px;font-size:13px;color:var(--soft);line-height:2.2;text-align:left;margin:16px 0;" id="member-success-detail"></div>
-        <div style="font-size:12px;color:var(--muted);">We'll confirm your booking via WhatsApp shortly. Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</div>
+        <div style="font-size:12px;color:var(--muted);">I'll confirm your booking via WhatsApp shortly. Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</div>
         <button class="btn-fill" style="margin-top:20px;" onclick="memberBookAgain()">Book Another Session</button>
       </div>
     </div>
@@ -688,7 +706,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="sc-name">10-Session Pack</div>
         <div class="sc-div"></div>
         <p class="sc-desc">For those committed to a regular practice. Ten private sessions at a preferred rate, with priority scheduling — the way to see real, lasting change in your body.</p>
-        <div class="sc-offer">🎁 Opening offer — register in October and get <strong>11 sessions</strong> (one on us).</div>
+        <div class="sc-offer">🎁 Opening offer — register in October and get an <strong>11th session free</strong>.</div>
         <div class="sc-price">$1,200</div>
         <div class="sc-sub">10 × 50 min · $120/session</div>
         <button class="sc-btn" onclick="openLogin(event)">Members Only</button>
@@ -722,7 +740,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
 <section class="reviews" id="reviews">
   <div class="reviews-hd">
     <div class="eyebrow">Member Reviews</div>
-    <h2>Loved by our members</h2>
+    <h2>What members say</h2>
   </div>
   <div class="reviews-grid">
     <div class="review-card">
@@ -756,7 +774,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What should I wear and bring?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Any comfortable workout clothes are fine — form-fitting is ideal, as it helps me see and correct your posture more precisely. Grip socks are recommended, but regular socks are perfectly okay too. Please bring a towel and a water bottle.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Can I do sessions while pregnant?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — prenatal Pilates is one of my specialisms. Sessions are adapted for every trimester. Please mention your stage when booking.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received, and we'll send a WhatsApp confirmation.</div></div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What is the cancellation policy?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Please contact us directly for any cancellations or changes. Late cancellations (under 24 hours) or no-shows are non-refundable.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What is the cancellation policy?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Please contact me directly for any cancellations or changes. Late cancellations (under 24 hours) or no-shows are non-refundable.</div></div></div>
   </div>
 </section>
 
@@ -799,7 +817,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <button onclick="closeLaunchPopup()" aria-label="Close" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;">×</button>
     <div style="font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);font-weight:500;margin-bottom:16px;">🌿 Now Open for Booking</div>
     <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:14px;">Welcome to<br>Linden Pilates</h3>
-    <p style="font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:22px;">We're in soft launch — sessions begin <strong style="color:var(--ink);">28 September</strong>. Book your first session now.</p>
+    <p style="font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:22px;">I'm in soft launch — sessions begin <strong style="color:var(--ink);">28 September</strong>. Book your first session now.</p>
     <div style="background:var(--green-light);border:1px solid var(--green);border-radius:6px;padding:16px 18px;margin-bottom:26px;">
       <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--taupe);font-weight:600;margin-bottom:6px;">🎁 Opening Offer</div>
       <p style="font-size:14px;color:var(--ink);line-height:1.6;margin:0;">Register for a 10-pack in October and get your <strong>11th session free.</strong></p>
@@ -1093,7 +1111,7 @@ function memberBackToCal(){
 
 async function submitMemberBookingInline(){
   if(isSubmitting) return;
-  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact us on WhatsApp.'); return; }
+  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact me on WhatsApp.'); return; }
   isSubmitting=true;
   const btn=document.getElementById('btn-member-book'); btn.disabled=true; btn.textContent='Saving…';
   const memo=document.getElementById('inp-memo-member2').value||'';
@@ -1193,7 +1211,7 @@ function pickSess(el,name,price){
 // 멀티스텝(sc3m) 멤버 예약
 async function submitMemberBooking(){
   if(isSubmitting) return;
-  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact us on WhatsApp.'); return; }
+  if((currentUser?.sessions_remaining||0)<=0){ alert('No sessions remaining. Please purchase a new pack — contact me on WhatsApp.'); return; }
   isSubmitting=true;
   const btn=document.getElementById('btn-confirm-member'); btn.disabled=true; btn.textContent='Saving…';
   const memo=document.getElementById('inp-memo-member').value||'';
