@@ -72,13 +72,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .sess-grid{display:grid;grid-template-columns:repeat(3,1fr);}
 .sess-card{padding:44px 40px;transition:background .3s;display:flex;flex-direction:column;border-right:1px solid var(--border);}
 .sess-card:last-child{border-right:none;}
-.sess-card.hovered{background:#4D7261;}
+.sess-card.hovered{background:#2E3D35;}
 .sess-card.hovered .sc-tag{color:rgba(255,255,255,.85)!important;}
 .sess-card.hovered .sc-name{color:var(--white)!important;}
 .sess-card.hovered .sc-desc,.sess-card.hovered .sc-sub{color:rgba(255,255,255,.9)!important;opacity:1;}
 .sess-card.hovered .sc-price{color:var(--white)!important;}
 .sess-card.hovered .sc-div{background:rgba(255,255,255,.35)!important;}
-.sess-card.hovered .sc-btn{background:var(--white)!important;color:#4D7261!important;border-color:var(--white)!important;}
+.sess-card.hovered .sc-btn{background:var(--white)!important;color:#2E3D35!important;border-color:var(--white)!important;}
 .sc-tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:14px;display:block;transition:color .3s;}
 .sc-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:10px;transition:color .3s;}
 .sc-div{width:28px;height:1px;background:var(--border);margin-bottom:14px;transition:background .3s;}
@@ -346,6 +346,8 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .hero-specialties{font-size:11.5px;line-height:1.9;}
   .hero-right{min-height:260px;}
   .sess-grid{grid-template-columns:1fr;}
+  .sess-card.hovered{background:#4D7261;}
+  .sess-card.hovered .sc-btn{color:#4D7261!important;}
   .sess-card{border-right:none;border-bottom:1px solid var(--border);padding:14px 20px;}
   .sess-card:last-child{border-bottom:none;}
   .sc-name{font-size:19px;margin-bottom:4px;}
@@ -663,7 +665,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="hero-left">
       <div class="hero-tag">Private Pilates · Orchard</div>
       <h1 class="hero-h1">Pilates built<br>around <em>you.</em></h1>
-      <p class="hero-desc">Focused 1:1 sessions in a calm, fully-equipped home studio — with <strong>10+ years of experience</strong> behind every session.</p>
+      <p class="hero-desc">Focused 1:1 sessions in a calm, fully-equipped home studio — with <strong>12+ years of experience</strong> behind every session.</p>
       <div class="hero-specialties">Postural alignment &nbsp;·&nbsp; Pre &amp; postnatal &nbsp;·&nbsp; Pain &amp; recovery support</div>
       <p class="hero-studio-info">
         <strong>📍 The Draycott · Orchard</strong><br>
@@ -730,7 +732,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="about-content">
     <div class="eyebrow">Senior Instructor</div>
     <h2>Movement that<br>fits your body.</h2>
-    <p>Hi, I'm Yeji — a PMA certified Pilates instructor with over 10 years of experience and a background in Sports Science. I also work as a PE teacher at an international school, bringing both clinical knowledge and real-world coaching to every session.</p>
+    <p>Hi, I'm Yeji — a PMA certified Pilates instructor with over 12 years of experience and a background in Sports Science. I also work as a PE teacher at an international school, bringing both clinical knowledge and real-world coaching to every session.</p>
     <p>I offer 1:1 Reformer, Tower, and Barre Bar sessions in a quiet home studio by appointment. Every session is designed around you — your posture, history, and goals.</p>
     <div class="quote">"Each session is calm, focused, and built for real progress — not just on the reformer, but in everyday life."</div>
     <p class="linden-note">Named after the linden tree — long a symbol of calm and healing.</p>
