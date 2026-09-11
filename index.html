@@ -72,13 +72,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .sess-grid{display:grid;grid-template-columns:repeat(3,1fr);}
 .sess-card{padding:44px 40px;transition:background .3s;display:flex;flex-direction:column;border-right:1px solid var(--border);}
 .sess-card:last-child{border-right:none;}
-.sess-card:hover{background:#4D7261;}
-.sess-card:hover .sc-tag{color:rgba(255,255,255,.85)!important;}
-.sess-card:hover .sc-name{color:var(--white)!important;}
-.sess-card:hover .sc-desc,.sess-card:hover .sc-sub{color:rgba(255,255,255,.9)!important;opacity:1;}
-.sess-card:hover .sc-price{color:var(--white)!important;}
-.sess-card:hover .sc-div{background:rgba(255,255,255,.35)!important;}
-.sess-card:hover .sc-btn{background:var(--white)!important;color:#4D7261!important;border-color:var(--white)!important;}
+.sess-card.hovered{background:#4D7261;}
+.sess-card.hovered .sc-tag{color:rgba(255,255,255,.85)!important;}
+.sess-card.hovered .sc-name{color:var(--white)!important;}
+.sess-card.hovered .sc-desc,.sess-card.hovered .sc-sub{color:rgba(255,255,255,.9)!important;opacity:1;}
+.sess-card.hovered .sc-price{color:var(--white)!important;}
+.sess-card.hovered .sc-div{background:rgba(255,255,255,.35)!important;}
+.sess-card.hovered .sc-btn{background:var(--white)!important;color:#4D7261!important;border-color:var(--white)!important;}
 .sc-tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:14px;display:block;transition:color .3s;}
 .sc-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:10px;transition:color .3s;}
 .sc-div{width:28px;height:1px;background:var(--border);margin-bottom:14px;transition:background .3s;}
@@ -87,8 +87,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .sc-sub{font-size:13px;color:var(--muted);margin-top:5px;transition:color .3s;}
 .sc-offer{font-size:12.5px;color:var(--taupe);line-height:1.6;background:var(--green-light);border-left:2px solid var(--green);padding:10px 12px;margin-bottom:18px;border-radius:3px;}
 .sc-offer strong{color:var(--ink);font-weight:600;}
-.sess-card:hover .sc-offer{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);}
-.sess-card:hover .sc-offer strong{color:#fff;}
+.sess-card.hovered .sc-offer{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);}
+.sess-card.hovered .sc-offer strong{color:#fff;}
 .sc-btn{margin-top:20px;padding:13px 0;background:transparent;border:1.5px solid var(--border);color:var(--soft);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:color .3s,border-color .3s,background .3s;}
 .sc-btn:hover{color:inherit;}
 
@@ -1497,6 +1497,23 @@ async function loadAllBookings(){
   el.innerHTML=`<table class="adm-bookings-table"><thead><tr><th>Date</th><th>Time</th></tr></thead><tbody>${data.map(b=>`<tr><td>${b.session_date||'—'}</td><td>${b.session_time||'—'}</td></tr>`).join('')}</tbody></table><p style="font-size:12px;color:var(--muted);margin-top:10px;">이름·전화·레퍼런스 등 전체 예약 상세는 구글 시트 Bookings 탭에 있습니다.</p>`;
 }
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// 카드 하이라이트: 데스크탑=마우스, 모바일=터치 (둘 다 확실히 동작)
+(function(){
+  var cards=document.querySelectorAll('.sess-card');
+  cards.forEach(function(card){
+    // desktop mouse
+    card.addEventListener('mouseenter',function(){card.classList.add('hovered');});
+    card.addEventListener('mouseleave',function(){card.classList.remove('hovered');});
+    // mobile touch
+    card.addEventListener('touchstart',function(e){
+      if(e.target.closest('.sc-btn')) return;
+      var on=card.classList.contains('hovered');
+      cards.forEach(function(c){c.classList.remove('hovered');});
+      if(!on) card.classList.add('hovered');
+    },{passive:true});
+  });
+})();
 
 // Soft-launch popup — show once per browser session
 function closeLaunchPopup(){
