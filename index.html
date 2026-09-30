@@ -70,6 +70,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 /* studio photo */
 .hero-right{position:relative;overflow:hidden;background:var(--linen);}
 .hero-photo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .9s ease;}
+.hero-slideshow{position:relative;width:100%;height:100%;}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.2s ease;}
+.hero-slide.active{opacity:1;}
+.hero-right:hover .hero-slide.active{transform:scale(1.04);transition:transform .9s ease,opacity 1.2s ease;}
 .hero-right:hover .hero-photo{transform:scale(1.04);}
 .hero-photo-ph{width:100%;height:100%;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
 .hero-photo-ph svg{opacity:.25;}
@@ -682,8 +686,10 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <p class="hero-appt">By appointment only</p>
     </div>
     <div class="hero-right">
-      <img src="main.jpeg" class="hero-photo" alt="Linden Pilates Studio"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hero-slideshow">
+        <img src="studio1.jpg" class="hero-slide active" alt="Linden Pilates Studio">
+        <img src="studio2.jpg" class="hero-slide" alt="Linden Pilates Studio">
+      </div>
       <div class="hero-photo-ph" style="display:none;">
         <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
         <span>Studio Photo</span>
@@ -1493,6 +1499,18 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
       if(!on) card.classList.add('hovered');
     },{passive:true});
   });
+})();
+
+// HERO 슬라이드쇼 — 5초마다 자동 전환
+(function(){
+  var slides=document.querySelectorAll('.hero-slide');
+  if(slides.length<2) return;
+  var i=0;
+  setInterval(function(){
+    slides[i].classList.remove('active');
+    i=(i+1)%slides.length;
+    slides[i].classList.add('active');
+  },5000);
 })();
 </script>
 </body>
