@@ -75,9 +75,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero-slide.active{opacity:1;}
 .hero-slide{overflow:hidden;cursor:zoom-in;}
 .hero-slide::before{content:'';position:absolute;inset:-40px;background:var(--bg) center/cover;filter:blur(26px) saturate(1.05);transform:scale(1.1);}
+.hero-slide picture{display:contents;}
 .hero-slide img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
 .hero-right:hover .hero-slide.active{transform:none;}
-@media(max-width:768px){.hero-slide:not(.land) img{object-fit:cover;}}
+@media(max-width:768px){.hero-slide img{object-fit:cover;}}
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:10000;background:rgba(18,22,20,.95);display:none;align-items:center;justify-content:center;}
 .lb.open{display:flex;}
@@ -709,7 +710,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="hero-main">
     <div class="hero-right">
       <div class="hero-slideshow" id="hero-slideshow">
-        <div class="hero-slide active land" style="--bg:url('photo-view.jpg')"><img src="photo-view.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide active land" style="--bg:url('photo-view.jpg')"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio"></picture></div>
         <div class="hero-slide" style="--bg:url('photo-mirror.jpg')"><img src="photo-mirror.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-slide" style="--bg:url('photo-barrel.jpg')"><img src="photo-barrel.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-dots" id="hero-dots"></div>
@@ -795,7 +796,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <h2>A calm space to move</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
+    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
     <div class="gallery-item"><img src="photo-mirror.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="photo-barrel.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
   </div>
@@ -1599,7 +1600,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 <script>
 // Lightbox: 원본 비율 그대로 보기 (사진 클릭)
 (function(){
-  const FULL=['photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg'];
+  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg'];
   const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
   let i=0;
   function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
