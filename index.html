@@ -48,8 +48,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero{min-height:100vh;background:var(--warm);display:flex;flex-direction:column;padding-top:80px;}
 
 /* top split: text left, photo right */
-.hero-main{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:520px;}
-.hero-left{padding:64px 60px 52px;display:flex;flex-direction:column;justify-content:center;}
+.hero-main{display:grid;grid-template-columns:5fr 7fr;flex:1;min-height:580px;}
+.hero-left{padding:64px 44px 52px 56px;display:flex;flex-direction:column;justify-content:center;}
 .hero-tag{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:24px;font-weight:500;}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--taupe);}
 .hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5vw,80px);font-weight:300;color:var(--ink);line-height:1.05;margin-bottom:24px;}
@@ -73,6 +73,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero-slideshow{position:relative;width:100%;height:100%;}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.2s ease;}
 .hero-slide.active{opacity:1;}
+.hero-dots{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:8px;z-index:3;}
+.hero-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.55);cursor:pointer;transition:background .3s,transform .3s;}
+.hero-dots button.on{background:#fff;transform:scale(1.25);}
+
 .hero-right:hover .hero-slide.active{transform:scale(1.04);transition:transform .9s ease,opacity 1.2s ease;}
 .hero-right:hover .hero-photo{transform:scale(1.04);}
 .hero-photo-ph{width:100%;height:100%;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
@@ -133,7 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .gallery-item{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--linen);border-radius:4px;}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
 .gallery-item:hover img{transform:scale(1.05);}
-@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:1fr 1fr;gap:8px;}}
+@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:repeat(3,1fr);gap:6px;}}
 
 /* ── REVIEWS ──────────────────────────────────────────────────────────────── */
 .reviews{background:var(--warm);padding:100px 56px;}
@@ -367,7 +371,7 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .hero-main{grid-template-columns:1fr;}
   .hero-left{padding:48px 24px 32px;}
   .hero-specialties{font-size:11.5px;line-height:1.9;}
-  .hero-right{min-height:60vh;}
+  .hero-right{aspect-ratio:3/4;min-height:0;max-height:78vh;width:100%;}
   .hero-photo{object-position:center 30%;}
   .sess-grid{grid-template-columns:1fr;}
   .sess-card.hovered{background:#4D7261;}
@@ -698,8 +702,12 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <p class="hero-appt">By appointment only</p>
     </div>
     <div class="hero-right">
-      <img src="studio1.jpg" class="hero-photo" alt="Linden Pilates Studio"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hero-slideshow" id="hero-slideshow">
+        <img src="studio1.jpg" class="hero-slide active" alt="Linden Pilates Studio">
+        <img src="studio2.jpg" class="hero-slide" alt="Linden Pilates Studio">
+        <img src="studio3.jpg" class="hero-slide" alt="Linden Pilates Studio">
+        <div class="hero-dots" id="hero-dots"></div>
+      </div>
       <div class="hero-photo-ph" style="display:none;">
         <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
         <span>Studio Photo</span>
@@ -1550,6 +1558,19 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
       if(!on) card.classList.add('hovered');
     },{passive:true});
   });
+})();
+</script>
+
+<script>
+// Hero slideshow (3 photos, auto-rotate every 5s)
+(function(){
+  const box=document.getElementById('hero-slideshow'); if(!box) return;
+  const slides=[...box.querySelectorAll('.hero-slide')], dots=document.getElementById('hero-dots');
+  let i=0, timer;
+  slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Photo '+(n+1));b.onclick=()=>{show(n);restart();};dots.appendChild(b);});
+  function show(n){i=n;slides.forEach((s,k)=>s.classList.toggle('active',k===n));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===n));}
+  function restart(){clearInterval(timer);timer=setInterval(()=>show((i+1)%slides.length),5000);}
+  show(0);restart();
 })();
 </script>
 </body>
