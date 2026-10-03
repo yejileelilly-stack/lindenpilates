@@ -163,6 +163,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .reviews-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
 .reviews-hd .eyebrow{margin-bottom:10px;}
 .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;margin:0 auto;}
+.review-wide{grid-column:1/-1;}
 .review-card{background:var(--white);border:1px solid var(--border);padding:32px 30px;display:flex;flex-direction:column;}
 .review-stars{color:var(--taupe);font-size:16px;letter-spacing:3px;margin-bottom:14px;}
 .review-text{font-size:16px;color:var(--soft);line-height:1.9;font-style:italic;flex:1;margin-bottom:18px;}
@@ -710,10 +711,10 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="hero-main">
     <div class="hero-right">
       <div class="hero-slideshow" id="hero-slideshow">
-        <div class="hero-slide active land" style="--bg:url('photo-view.jpg')"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio"></picture></div>
+        <div class="hero-slide active land" style="--bg:url('photo-extra-desktop.jpg')"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio"></picture></div>
         <div class="hero-slide" style="--bg:url('photo-mirror.jpg')"><img src="photo-mirror.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-slide" style="--bg:url('photo-barrel.jpg')"><img src="photo-barrel.jpg" alt="Linden Pilates Studio"></div>
-        <div class="hero-slide" style="--bg:url('photo-extra-desktop.jpg')"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio"></picture></div>
+        <div class="hero-slide" style="--bg:url('photo-view.jpg')"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio"></picture></div>
         <div class="hero-dots" id="hero-dots"></div>
       </div>
       <div class="hero-photo-ph" style="display:none;">
@@ -797,10 +798,10 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <h2>A calm space to move</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
+    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
     <div class="gallery-item"><img src="photo-mirror.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="photo-barrel.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
-    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
+    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
   </div>
 </section>
 
@@ -831,7 +832,12 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <p class="review-text">"Since having my baby, I'd struggled with rounded shoulders and lower back pain that wouldn't go away. After working with Yeji, both have noticeably improved — and she got me genuinely hooked on Pilates. Highly recommend if you're dealing with posture or postpartum pain!"</p>
       <div class="review-name">— Y.N</div>
     </div>
-  </div>
+      <div class="review-card review-wide">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Yeji's lessons completely changed my perspective on Pilates. She's incredibly knowledgeable and explains the principles behind every move using her anatomy expertise, so both your mind and body learn to use muscles correctly. It's amazing to see and feel your body transform after every class. If you want an instructor who truly knows her stuff and brings great energy, you won't regret signing up."</p>
+      <div class="review-name">— N.C</div>
+    </div>
+</div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ FAQ ═ -->
@@ -1603,7 +1609,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 <script>
 // Lightbox: 원본 비율 그대로 보기 (사진 클릭)
 (function(){
-  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg',window.matchMedia('(max-width:768px)').matches?'photo-extra-mobile.jpg':'photo-extra-desktop.jpg'];
+  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-extra-desktop.jpg','photo-mirror.jpg','photo-barrel.jpg',window.matchMedia('(max-width:768px)').matches?'photo-extra-mobile.jpg':'photo-view.jpg'];
   const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
   let i=0;
   function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
