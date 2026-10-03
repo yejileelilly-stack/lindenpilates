@@ -1161,7 +1161,7 @@ async function renderMemberCal(force) {
       let shown=0;
       times.forEach(time=>{
         const isBooked=booked.some(b=>b.session_date===dateStr&&b.session_time===time);
-        const isBlocked=blocked.some(b=>b.slot_date===dateStr&&b.slot_time===time);
+        const isBlocked=blocked.some(b=>b.slot_date===dateStr&&(b.slot_time===time||b.slot_time==='ALL'));
         // 예약됨·휴무 → 아예 숨김(렌더링 안 함)
         if(isBooked||isBlocked) return;
         const cutoff=isPastCutoff(date, time);
@@ -1410,7 +1410,7 @@ async function renderCal(force){
       let shown=0;
       times.forEach(time=>{
         const isBooked=bookedData.some(b=>b.session_date===dateStr&&b.session_time===time);
-        const isBlocked=blockedData.some(b=>b.slot_date===dateStr&&b.slot_time===time);
+        const isBlocked=blockedData.some(b=>b.slot_date===dateStr&&(b.slot_time===time||b.slot_time==='ALL'));
         // 예약됨·휴무 → 아예 숨김
         if(isBooked||isBlocked) return;
         const cutoff=isPastCutoff(date, time);
