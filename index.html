@@ -720,9 +720,9 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     </div>
     <div class="hero-right">
       <div class="hero-slideshow" id="hero-slideshow">
-        <div class="hero-slide active" style="--bg:url('studio1.jpg')"><img src="studio1.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide active land" style="--bg:url('studio3.jpg')"><img src="studio3.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide" style="--bg:url('studio1.jpg')"><img src="studio1.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-slide" style="--bg:url('studio2.jpg')"><img src="studio2.jpg" alt="Linden Pilates Studio"></div>
-        <div class="hero-slide land" style="--bg:url('studio3_full.jpg')"><img src="studio3_full.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-dots" id="hero-dots"></div>
       </div>
       <div class="hero-photo-ph" style="display:none;">
@@ -795,9 +795,9 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <h2>A calm space to move</h2>
   </div>
   <div class="gallery-grid">
+    <div class="gallery-item"><img src="studio3.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="studio1.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="studio2.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
-        <div class="gallery-item"><img src="studio3.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
   </div>
 </section>
 
@@ -1599,7 +1599,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 <script>
 // Lightbox: 원본 비율 그대로 보기 (사진 클릭)
 (function(){
-  const FULL=['studio1.jpg','studio2.jpg','studio3_full.jpg'];
+  const FULL=['studio3.jpg','studio1.jpg','studio2.jpg'];
   const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
   let i=0;
   function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
