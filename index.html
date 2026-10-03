@@ -151,11 +151,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .gallery-hd{text-align:center;margin-bottom:48px;}
 .gallery-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
 .gallery-hd .eyebrow{margin-bottom:10px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1100px;margin:0 auto;}
 .gallery-item{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--linen);border-radius:4px;}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
 .gallery-item:hover img{transform:scale(1.05);}
-@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:repeat(3,1fr);gap:6px;}}
+@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}}
 
 /* ── REVIEWS ──────────────────────────────────────────────────────────────── */
 .reviews{background:var(--warm);padding:100px 56px;}
@@ -713,6 +713,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="hero-slide active land" style="--bg:url('photo-view.jpg')"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio"></picture></div>
         <div class="hero-slide" style="--bg:url('photo-mirror.jpg')"><img src="photo-mirror.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-slide" style="--bg:url('photo-barrel.jpg')"><img src="photo-barrel.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide" style="--bg:url('photo-extra-desktop.jpg')"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio"></picture></div>
         <div class="hero-dots" id="hero-dots"></div>
       </div>
       <div class="hero-photo-ph" style="display:none;">
@@ -799,6 +800,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
     <div class="gallery-item"><img src="photo-mirror.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="photo-barrel.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
+    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
   </div>
 </section>
 
@@ -837,6 +839,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="faq-hd"><div class="eyebrow">Questions</div><h2>FAQ</h2></div>
   <div class="faq-grid">
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Where is the studio?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">A quiet home-based studio in The Draycott condo, Orchard. The exact unit is shared after booking confirmation.</div></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Is there parking?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — you can park at the building&rsquo;s guest parking. Detailed directions and instructions will be sent to you via WhatsApp after you book.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What should I wear and bring?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Any comfortable workout clothes are fine — form-fitting is ideal, as it helps me see and correct your posture more precisely. Grip socks are recommended, but regular socks are perfectly okay too. Please bring a towel and a water bottle.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Can I do sessions while pregnant?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — prenatal Pilates is one of my specialisms. Sessions are adapted for every trimester. Please mention your stage when booking.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received, and we'll send a WhatsApp confirmation.</div></div></div>
@@ -1600,7 +1603,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 <script>
 // Lightbox: 원본 비율 그대로 보기 (사진 클릭)
 (function(){
-  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg'];
+  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg',window.matchMedia('(max-width:768px)').matches?'photo-extra-mobile.jpg':'photo-extra-desktop.jpg'];
   const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
   let i=0;
   function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
