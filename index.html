@@ -73,6 +73,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero-slideshow{position:relative;width:100%;height:100%;}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.2s ease;}
 .hero-slide.active{opacity:1;}
+.hero-slide{overflow:hidden;cursor:zoom-in;}
+.hero-slide::before{content:'';position:absolute;inset:-40px;background:var(--bg) center/cover;filter:blur(26px) saturate(1.05);transform:scale(1.1);}
+.hero-slide img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
+.hero-right:hover .hero-slide.active{transform:none;}
+@media(max-width:768px){.hero-slide:not(.land) img{object-fit:cover;}}
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(18,22,20,.95);display:none;align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb img{max-width:94vw;max-height:86vh;object-fit:contain;display:block;user-select:none;}
+.lb button{position:absolute;background:none;border:0;color:#fff;cursor:pointer;opacity:.8;font-family:inherit;}
+.lb button:hover{opacity:1;}
+.lb-x{top:14px;right:18px;font-size:34px;line-height:1;padding:8px;}
+.lb-p,.lb-n{top:50%;transform:translateY(-50%);font-size:40px;padding:16px;}
+.lb-p{left:6px;}.lb-n{right:6px;}
+.lb-c{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#fff;opacity:.7;font-size:12px;letter-spacing:2px;}
+.gallery-item{cursor:zoom-in;}
+
 .hero-dots{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:8px;z-index:3;}
 .hero-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.55);cursor:pointer;transition:background .3s,transform .3s;}
 .hero-dots button.on{background:#fff;transform:scale(1.25);}
@@ -703,9 +720,9 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     </div>
     <div class="hero-right">
       <div class="hero-slideshow" id="hero-slideshow">
-        <img src="studio1.jpg" class="hero-slide active" alt="Linden Pilates Studio">
-        <img src="studio2.jpg" class="hero-slide" alt="Linden Pilates Studio">
-        <img src="studio3.jpg" class="hero-slide" alt="Linden Pilates Studio">
+        <div class="hero-slide active" style="--bg:url('studio1.jpg')"><img src="studio1.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide" style="--bg:url('studio2.jpg')"><img src="studio2.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide land" style="--bg:url('studio3_full.jpg')"><img src="studio3_full.jpg" alt="Linden Pilates Studio"></div>
         <div class="hero-dots" id="hero-dots"></div>
       </div>
       <div class="hero-photo-ph" style="display:none;">
@@ -780,9 +797,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="gallery-grid">
     <div class="gallery-item"><img src="studio1.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="studio2.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
-    <!-- 사진 추가: 아래 형식으로 복사해서 새 파일명만 바꾸세요
-    <div class="gallery-item"><img src="studio3.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
-    -->
+        <div class="gallery-item"><img src="studio3.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
   </div>
 </section>
 
@@ -1571,6 +1586,37 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
   function show(n){i=n;slides.forEach((s,k)=>s.classList.toggle('active',k===n));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===n));}
   function restart(){clearInterval(timer);timer=setInterval(()=>show((i+1)%slides.length),5000);}
   show(0);restart();
+})();
+</script>
+
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-x" aria-label="Close">&times;</button>
+  <button class="lb-p" aria-label="Previous">&#8249;</button>
+  <img id="lb-img" alt="Linden Pilates Studio">
+  <button class="lb-n" aria-label="Next">&#8250;</button>
+  <div class="lb-c" id="lb-c"></div>
+</div>
+<script>
+// Lightbox: 원본 비율 그대로 보기 (사진 클릭)
+(function(){
+  const FULL=['studio1.jpg','studio2.jpg','studio3_full.jpg'];
+  const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
+  let i=0;
+  function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
+  function open(n){show(n);lb.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';}
+  document.querySelectorAll('.hero-slide').forEach(el=>el.addEventListener('click',()=>{
+    open([...document.querySelectorAll('.hero-slide')].indexOf(el));}));
+  document.querySelectorAll('.gallery-item').forEach((el,n)=>el.addEventListener('click',()=>open(n)));
+  lb.querySelector('.lb-x').onclick=close;
+  lb.querySelector('.lb-p').onclick=e=>{e.stopPropagation();show(i-1);};
+  lb.querySelector('.lb-n').onclick=e=>{e.stopPropagation();show(i+1);};
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(i-1); if(e.key==='ArrowRight')show(i+1);});
+  let x0=null; lb.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;},{passive:true});
+  lb.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50) show(i+(dx<0?1:-1)); x0=null;});
 })();
 </script>
 </body>
