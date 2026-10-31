@@ -317,7 +317,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 /* Dashboard */
 .dashboard{background:var(--warm);padding:120px 56px 80px;display:none;}
 .dashboard.open{display:block;}
-.dash-hd{margin-bottom:48px;}
+.dash-hd{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:48px;}
+.pack-start{text-align:right;}
+.pack-sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);margin-bottom:10px;}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--ink);color:#fff;text-decoration:none;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;font-weight:500;margin:16px 0 10px;border-radius:6px;}
+.wa-btn:hover{background:var(--taupe);}
 .dash-hd h2{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--ink);}
 .dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
 .dash-card{background:var(--white);border:1px solid var(--border);padding:28px;}
@@ -433,7 +437,8 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .adm-panel{padding:60px 24px;}
 }
 .pack-box{border:1px solid var(--border);background:var(--cream);padding:24px;margin-bottom:36px;}
-.pack-terms{background:var(--white);border:1px solid var(--border);padding:16px 18px;max-height:240px;overflow-y:auto;font-size:12.5px;color:var(--soft);line-height:1.9;margin-bottom:16px;}
+.pack-terms p{margin:12px 0 0;}
+.pack-terms{background:var(--white);border:1px solid var(--border);padding:16px 18px;max-height:340px;overflow-y:auto;font-size:12.5px;color:var(--soft);line-height:1.9;margin-bottom:16px;}
 .pack-terms ol{padding-left:18px;}.pack-terms li{margin-bottom:6px;}
 .sig-wrap{background:#fff;border:1.5px dashed var(--border);margin:8px 0 6px;}
 #pack-sig{display:block;width:100%;height:140px;touch-action:none;cursor:crosshair;}
@@ -601,7 +606,8 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
           <h3>Booking confirmed!</h3>
           <p style="font-size:15px;color:var(--ink);font-weight:400;margin-bottom:6px;">See you on the reformer.</p>
           <div class="ok-detail" id="ok-detail" style="margin:20px 0;"></div>
-          <div style="background:var(--green-light);border-left:2px solid var(--green);padding:12px 16px;font-size:12px;color:var(--soft);line-height:1.9;margin-bottom:16px;">I'll confirm your booking via WhatsApp shortly.</div>
+          <a class="wa-btn member-wa" href="#" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>Send booking details on WhatsApp</a>
+          <div style="font-size:12px;color:var(--soft);line-height:1.8;margin-bottom:12px;">Please tap the button above after booking so I can see it right away.</div>
           <p style="font-size:11px;color:var(--muted);">Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</p>
         </div>
         <div id="ok-new">
@@ -623,8 +629,14 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
 <!-- DASHBOARD -->
 <div class="dashboard" id="dashboard">
   <div class="dash-hd">
-    <div class="eyebrow">Member Portal</div>
-    <h2>Welcome back, <span id="dash-name">—</span></h2>
+    <div>
+      <div class="eyebrow">Member Portal</div>
+      <h2>Welcome back, <span id="dash-name">—</span></h2>
+    </div>
+    <div class="pack-start" id="pack-start">
+      <div class="pack-sub">10-Session Pack · $1,200</div>
+      <button class="b-confirm" onclick="packOpen()">Purchase a Pack</button>
+    </div>
   </div>
   <div class="dash-cards">
     <div class="dash-card highlight">
@@ -643,24 +655,18 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <div class="dash-card-sub">Sessions completed</div>
     </div>
   </div>
-  <div class="dash-section-title">Purchase a Pack</div>
-  <div class="pack-box" id="pack-box">
-    <div id="pack-start">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);">10-Session Pack · $1,200</div>
-      <div style="font-size:12px;color:var(--muted);margin:4px 0 16px;">10 × 50 min private sessions · $120 / session</div>
-      <button class="b-confirm" onclick="packOpen()">Purchase Pack</button>
-    </div>
+  <div class="pack-box" id="pack-box" style="display:none;">
     <div id="pack-terms-wrap" style="display:none;">
       <div class="pack-terms">
-        <strong>Member Terms — 10-Session Pack</strong>
-        <ol>
-          <li>The pack includes 10 private sessions (50 min each) for $1,200.</li>
-          <li>The pack is designed to be used at about <strong>one session per week</strong>, and is used up as sessions are completed.</li>
-          <li>If you are travelling or unwell, please tell me in advance. I will extend your pack at my discretion.</li>
-          <li>Sessions are booked by midnight the day before. Cancellations under 24 hours, or no-shows, count as a used session.</li>
-          <li>The pack is for the named member only and cannot be transferred.</li>
-          <li>I have told my instructor about any injury, pregnancy or medical condition, and will update her if anything changes. I take part at my own risk and will stop if I feel pain.</li>
-        </ol>
+        <strong style="font-size:14px;color:var(--ink);">Member Terms — 10-Session Pack</strong>
+        <p><strong>1. Your Pack</strong><br>Your pack includes 10 private Pilates sessions (50 minutes each) for S$1,200.</p>
+        <p><strong>2. Validity</strong><br>Your pack is valid for 4 months from your first session. I recommend attending around once a week for consistent progress. If you're travelling or unwell, just let me know in advance, and I'm happy to consider an extension.</p>
+        <p><strong>3. Booking &amp; Cancellation</strong><br>Sessions are by appointment. Please give at least 24 hours' notice if you need to cancel or reschedule.<br>Cancellations within 24 hours or no-shows will count as one session. If something unexpected comes up, please let me know as soon as possible, and I'll do my best to be flexible.<br>If I need to cancel a session, it won't be deducted from your pack, and I'll extend the validity if needed.</p>
+        <p><strong>4. Sharing Your Pack</strong><br>Your pack is for your personal use, but transfers to family members may be arranged with prior agreement.</p>
+        <p><strong>5. Health &amp; Safety</strong><br>Please let me know about any injuries, medical conditions, pregnancy, or changes in your health that may affect your sessions.<br>If needed, I may ask for guidance or clearance from your doctor or physiotherapist. For your safety, sessions may be adjusted or postponed when appropriate.<br>If you experience any pain, dizziness, or unusual discomfort during a session, please let me know immediately.</p>
+        <p><strong>6. Participation</strong><br>Pilates involves physical activity and carries some inherent risks. By joining a session, you acknowledge these risks and agree to follow the instructor's safety guidance.<br>Nothing in these terms limits any rights or responsibilities that cannot legally be excluded.</p>
+        <p><strong>7. Refunds</strong><br>Packs are generally non-refundable for a change of mind.<br>However, if you're unable to continue for medical reasons, or if I'm unable to provide the remaining sessions, I'll refund your unused sessions at S$120 per session.<br>Your rights under applicable Singapore law remain unaffected.</p>
+        <p style="margin-bottom:0;">Thank you for helping me keep Linden Pilates a safe, welcoming, and enjoyable space!</p>
       </div>
       <label class="pack-chk"><input type="checkbox" id="pack-agree" style="margin-top:4px;"><span>I have read and agree to the Member Terms above.</span></label>
       <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);">Sign below</div>
@@ -711,7 +717,8 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         </div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:8px;">Booking confirmed!</div>
         <div style="background:var(--cream);border:1px solid var(--border);padding:16px 20px;font-size:13px;color:var(--soft);line-height:2.2;text-align:left;margin:16px 0;" id="member-success-detail"></div>
-        <div style="font-size:12px;color:var(--muted);">I'll confirm your booking via WhatsApp shortly. Questions? <a href="https://api.whatsapp.com/send?phone=6589917223" target="_blank" style="color:var(--taupe);">WhatsApp</a>.</div>
+        <a class="wa-btn member-wa" href="#" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M12.004 0C5.374 0 0 5.373 0 12c0 2.117.554 4.103 1.522 5.824L0 24l6.335-1.509A11.953 11.953 0 0012.004 24C18.63 24 24 18.626 24 12S18.63 0 12.004 0zm0 21.818a9.808 9.808 0 01-5.022-1.38l-.36-.214-3.738.89.944-3.628-.235-.372A9.789 9.789 0 012.185 12c0-5.42 4.4-9.818 9.82-9.818 5.418 0 9.815 4.399 9.815 9.818 0 5.42-4.397 9.818-9.816 9.818z"/></svg>Send booking details on WhatsApp</a>
+        <div style="font-size:12px;color:var(--muted);">Please tap the button above after booking so I can see it right away.</div>
         <button class="btn-fill" style="margin-top:20px;" onclick="memberBookAgain()">Book Another Session</button>
       </div>
     </div>
@@ -1064,7 +1071,7 @@ async function loadUserProfile(profile) {
 
 // ── 10회권 구매 (약관 + 서명 + PayNow QR) ──────────────────────────────────
 let packSigned=false;
-function packShow(id){['pack-start','pack-terms-wrap','pack-pay-wrap'].forEach(k=>document.getElementById(k).style.display=(k===id?'':'none'));}
+function packShow(id){ const box=document.getElementById('pack-box'); box.style.display=(id==='pack-start'?'none':''); ['pack-terms-wrap','pack-pay-wrap'].forEach(k=>document.getElementById(k).style.display=(k===id?'':'none')); if(id!=='pack-start') box.scrollIntoView({behavior:'smooth',block:'start'}); }
 function packOpen(){ packShow('pack-terms-wrap'); document.getElementById('pack-agree').checked=false; sigInit(); }
 function packClose(){ packShow('pack-start'); }
 function sigInit(){
@@ -1303,10 +1310,17 @@ async function submitMemberBookingInline(){
     const dd=document.getElementById('dash-sessions-detail'); if(dd) dd.textContent=r.remaining+' sessions remaining';
     const mEl=document.getElementById('member-sess-remaining'); if(mEl) mEl.textContent=r.remaining;
   }
+  setMemberWa(ref,memberSlot?.date,memberSlot?.time);
   document.getElementById('member-memo-wrap').style.display='none';
   document.getElementById('member-success-wrap').style.display='';
   document.getElementById('member-success-detail').innerHTML=`<strong>Session</strong> Private Session<br><strong>Date & Time</strong> ${memberSlot?.date} · ${memberSlot?.time}`;
   loadDashboardBookings();
+}
+function setMemberWa(ref,date,time){
+  const u=currentUser||{};
+  const msg=`Hi! I've just booked a regular session.\n\n*Name:* ${u.name||''}\n*Phone:* ${u.phone||''}\n*Session:* Regular Session\n*Date & Time:* ${date} · ${time}\n*Reference:* ${ref}\n*Sessions remaining:* ${u.sessions_remaining}\n\nThank you!`;
+  const href=`https://api.whatsapp.com/send?phone=${CFG.whatsappNumber}&text=${encodeURIComponent(msg)}`;
+  document.querySelectorAll('.member-wa').forEach(a=>a.href=href);
 }
 function memberBookAgain(){memberInitCal();}
 
@@ -1401,6 +1415,7 @@ async function submitMemberBooking(){
   document.querySelectorAll('.fsc').forEach(s=>s.classList.remove('active'));
   document.getElementById('sc-ok').classList.add('active');
   for(let i=1;i<=2;i++){const el=document.getElementById('si'+i+'m');if(el){el.classList.remove('active');el.classList.add('done');}}
+  setMemberWa(ref,S.slot?.date,S.slot?.time);
   document.getElementById('ok-member').style.display='block';
   document.getElementById('ok-new').style.display='none';
   document.getElementById('ok-detail').innerHTML=`<strong>Date & Time</strong> ${S.slot?.date} · ${S.slot?.time}`;
