@@ -48,8 +48,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero{min-height:100vh;background:var(--warm);display:flex;flex-direction:column;padding-top:80px;}
 
 /* top split: text left, photo right */
-.hero-main{display:grid;grid-template-columns:8fr 5fr;flex:1;min-height:580px;}
-.hero-left{padding:56px 36px 48px 44px;display:flex;flex-direction:column;justify-content:center;}
+.hero-main{display:grid;grid-template-columns:5fr 7fr;flex:1;min-height:580px;}
+.hero-left{padding:64px 44px 52px 56px;display:flex;flex-direction:column;justify-content:center;}
 .hero-tag{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--taupe);margin-bottom:24px;font-weight:500;}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--taupe);}
 .hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5vw,80px);font-weight:300;color:var(--ink);line-height:1.05;margin-bottom:24px;}
@@ -75,10 +75,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .hero-slide.active{opacity:1;}
 .hero-slide{overflow:hidden;cursor:zoom-in;}
 .hero-slide::before{content:'';position:absolute;inset:-40px;background:var(--bg) center/cover;filter:blur(26px) saturate(1.05);transform:scale(1.1);}
-.hero-slide picture{display:contents;}
 .hero-slide img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
 .hero-right:hover .hero-slide.active{transform:none;}
-@media(max-width:768px){.hero-slide img{object-fit:cover;}}
+@media(max-width:768px){.hero-slide:not(.land) img{object-fit:cover;}}
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:10000;background:rgba(18,22,20,.95);display:none;align-items:center;justify-content:center;}
 .lb.open{display:flex;}
@@ -151,11 +150,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .gallery-hd{text-align:center;margin-bottom:48px;}
 .gallery-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
 .gallery-hd .eyebrow{margin-bottom:10px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1100px;margin:0 auto;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto;}
 .gallery-item{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--linen);border-radius:4px;}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
 .gallery-item:hover img{transform:scale(1.05);}
-@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}}
+@media(max-width:768px){.gallery{padding:56px 24px;}.gallery-grid{grid-template-columns:repeat(3,1fr);gap:6px;}}
 
 /* ── REVIEWS ──────────────────────────────────────────────────────────────── */
 .reviews{background:var(--warm);padding:100px 56px;}
@@ -163,7 +162,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 56px;display:gr
 .reviews-hd h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--ink);letter-spacing:1px;}
 .reviews-hd .eyebrow{margin-bottom:10px;}
 .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;margin:0 auto;}
-.review-wide{grid-column:1/-1;}
 .review-card{background:var(--white);border:1px solid var(--border);padding:32px 30px;display:flex;flex-direction:column;}
 .review-stars{color:var(--taupe);font-size:16px;letter-spacing:3px;margin-bottom:14px;}
 .review-text{font-size:16px;color:var(--soft);line-height:1.9;font-style:italic;flex:1;margin-bottom:18px;}
@@ -390,7 +388,7 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .hero-main{grid-template-columns:1fr;}
   .hero-left{padding:48px 24px 32px;}
   .hero-specialties{font-size:11.5px;line-height:1.9;}
-  .hero-right{order:-1;aspect-ratio:3/4;min-height:0;max-height:78vh;width:100%;}
+  .hero-right{aspect-ratio:3/4;min-height:0;max-height:78vh;width:100%;}
   .hero-photo{object-position:center 30%;}
   .sess-grid{grid-template-columns:1fr;}
   .sess-card.hovered{background:#4D7261;}
@@ -444,7 +442,7 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
    1) Apps Script 배포 후 나오는 웹앱 URL(/exec 로 끝남)을 아래에 붙여넣으세요.
    2) PayNow 번호/이름도 여기서 바꿀 수 있습니다.
    ═══════════════════════════════════════════════════════════════════════════ */
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzmhd1ExBjUrGHbRbKYa4uFsQpPikJA058x-0lutNEeHeAfZxA26xD4pbwWaF11ZIMEhw/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwemc71euxUCZFSOfhfYuKrzq8OlUL6hl5prZeUROt-lFOj3Jn31l6Wj3aEkXxIgBJq/exec';
 const PAYNOW_NUMBER = '+6596141012';
 const PAYNOW_NAME = 'Yeji';
 const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 수신용)
@@ -709,19 +707,6 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
 
   <!-- Top: description left, studio photo right -->
   <div class="hero-main">
-    <div class="hero-right">
-      <div class="hero-slideshow" id="hero-slideshow">
-        <div class="hero-slide active land" style="--bg:url('photo-extra-desktop.jpg')"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio"></picture></div>
-        <div class="hero-slide" style="--bg:url('photo-mirror.jpg')"><img src="photo-mirror.jpg" alt="Linden Pilates Studio"></div>
-        <div class="hero-slide" style="--bg:url('photo-barrel.jpg')"><img src="photo-barrel.jpg" alt="Linden Pilates Studio"></div>
-        <div class="hero-slide" style="--bg:url('photo-view.jpg')"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio"></picture></div>
-        <div class="hero-dots" id="hero-dots"></div>
-      </div>
-      <div class="hero-photo-ph" style="display:none;">
-        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
-        <span>Studio Photo</span>
-      </div>
-    </div>
     <div class="hero-left">
       <div class="hero-tag">Private Pilates · Orchard</div>
       <h1 class="hero-h1">Pilates built<br>around <em>you.</em></h1>
@@ -732,6 +717,18 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <span class="hero-addr">Draycott Park, Singapore 259399</span>
       </p>
       <p class="hero-appt">By appointment only</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-slideshow" id="hero-slideshow">
+        <div class="hero-slide active land" style="--bg:url('photo-view.jpg')"><img src="photo-view.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide" style="--bg:url('photo-mirror.jpg')"><img src="photo-mirror.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-slide" style="--bg:url('photo-barrel.jpg')"><img src="photo-barrel.jpg" alt="Linden Pilates Studio"></div>
+        <div class="hero-dots" id="hero-dots"></div>
+      </div>
+      <div class="hero-photo-ph" style="display:none;">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#89A395" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg>
+        <span>Studio Photo</span>
+      </div>
     </div>
   </div>
 
@@ -761,7 +758,6 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
         <div class="sc-name">10-Session Pack</div>
         <div class="sc-div"></div>
         <p class="sc-desc">For those committed to a regular practice. Ten private sessions at a preferred rate, with priority scheduling — the way to see real, lasting change in your body.</p>
-        <div class="sc-offer">🎁 Opening offer — register in October and get an <strong>11th session free</strong>.</div>
         <div class="sc-price">$1,200</div>
         <div class="sc-sub">10 × 50 min · $120/session</div>
         <button class="sc-btn" onclick="openLogin(event)">Members Only</button>
@@ -798,10 +794,9 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
     <h2>A calm space to move</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-mobile.jpg"><img src="photo-extra-desktop.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
+    <div class="gallery-item"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="photo-mirror.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
     <div class="gallery-item"><img src="photo-barrel.jpg" alt="Linden Pilates Studio" loading="lazy"></div>
-    <div class="gallery-item"><picture><source media="(max-width:768px)" srcset="photo-extra-mobile.jpg"><img src="photo-view.jpg" alt="Linden Pilates Studio" loading="lazy"></picture></div>
   </div>
 </section>
 
@@ -832,12 +827,7 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <p class="review-text">"Since having my baby, I'd struggled with rounded shoulders and lower back pain that wouldn't go away. After working with Yeji, both have noticeably improved — and she got me genuinely hooked on Pilates. Highly recommend if you're dealing with posture or postpartum pain!"</p>
       <div class="review-name">— Y.N</div>
     </div>
-      <div class="review-card review-wide">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Yeji's lessons completely changed my perspective on Pilates. She's incredibly knowledgeable and explains the principles behind every move using her anatomy expertise, so both your mind and body learn to use muscles correctly. It's amazing to see and feel your body transform after every class. If you want an instructor who truly knows her stuff and brings great energy, you won't regret signing up."</p>
-      <div class="review-name">— N.C</div>
-    </div>
-</div>
+  </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════════ FAQ ═ -->
@@ -845,7 +835,6 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
   <div class="faq-hd"><div class="eyebrow">Questions</div><h2>FAQ</h2></div>
   <div class="faq-grid">
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Where is the studio?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">A quiet home-based studio in The Draycott condo, Orchard. The exact unit is shared after booking confirmation.</div></div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Is there parking?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — you can park at the building&rsquo;s guest parking. Detailed directions and instructions will be sent to you via WhatsApp after you book.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">What should I wear and bring?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Any comfortable workout clothes are fine — form-fitting is ideal, as it helps me see and correct your posture more precisely. Grip socks are recommended, but regular socks are perfectly okay too. Please bring a towel and a water bottle.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Can I do sessions while pregnant?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Yes — prenatal Pilates is one of my specialisms. Sessions are adapted for every trimester. Please mention your stage when booking.</div></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">How do I pay?</span><div class="faq-icon"></div></div><div class="faq-a"><div class="faq-a-inner">Payment is via PayNow. A QR code is shown at the end of booking. Your slot is confirmed once payment is received, and we'll send a WhatsApp confirmation.</div></div></div>
@@ -1031,6 +1020,17 @@ async function loadUserProfile(profile) {
   loadDashboardBookings();
 }
 
+// 서버에서 받은 최신 남은 횟수를 화면/저장값에 반영
+function applyRemaining(n){
+  if(!currentUser) return;
+  currentUser.sessions_remaining=n;
+  try{localStorage.setItem('bp_member',JSON.stringify(currentUser));}catch(e){}
+  const a=document.getElementById('dash-sessions'); if(a) a.textContent=n;
+  const b=document.getElementById('dash-sessions-detail'); if(b) b.textContent=n+' sessions remaining';
+  const c=document.getElementById('member-sess-remaining'); if(c) c.textContent=n;
+  const d=document.getElementById('member-sess-detail'); if(d) d.textContent=n+' sessions remaining';
+}
+
 // 대시보드: 이 회원의 예약 내역 불러오기 (Next booking / Total / 목록)
 function parseSessionDate(dateStr){
   if(!dateStr) return null;
@@ -1049,8 +1049,9 @@ async function loadDashboardBookings(){
   let r;
   try{ r=await gasCall({action:'myBookings', phone:currentUser.phone||'', pin:currentUser.pin||''}); }catch(e){}
   const data=(r&&r.ok&&r.bookings)?r.bookings:[];
+  if(r&&r.ok&&typeof r.remaining==='number') applyRemaining(r.remaining);
   const today=new Date(); today.setHours(0,0,0,0);
-  const withDate=data.map(b=>({...b,_d:parseSessionDate(b.session_date)})).filter(b=>b._d);
+  const withDate=data.filter(b=>String(b.status||'').toLowerCase()!=='cancelled').map(b=>({...b,_d:parseSessionDate(b.session_date)})).filter(b=>b._d);
   const upcoming=withDate.filter(b=>b._d>=today).sort((a,b)=>a._d-b._d);
   const completed=withDate.filter(b=>b._d<today).sort((a,b)=>b._d-a._d);
   // Next booking
@@ -1161,7 +1162,7 @@ async function renderMemberCal(force) {
       let shown=0;
       times.forEach(time=>{
         const isBooked=booked.some(b=>b.session_date===dateStr&&b.session_time===time);
-        const isBlocked=blocked.some(b=>b.slot_date===dateStr&&(b.slot_time===time||b.slot_time==='ALL'));
+        const isBlocked=blocked.some(b=>b.slot_date===dateStr&&b.slot_time===time);
         // 예약됨·휴무 → 아예 숨김(렌더링 안 함)
         if(isBooked||isBlocked) return;
         const cutoff=isPastCutoff(date, time);
@@ -1410,7 +1411,7 @@ async function renderCal(force){
       let shown=0;
       times.forEach(time=>{
         const isBooked=bookedData.some(b=>b.session_date===dateStr&&b.session_time===time);
-        const isBlocked=blockedData.some(b=>b.slot_date===dateStr&&(b.slot_time===time||b.slot_time==='ALL'));
+        const isBlocked=blockedData.some(b=>b.slot_date===dateStr&&b.slot_time===time);
         // 예약됨·휴무 → 아예 숨김
         if(isBooked||isBlocked) return;
         const cutoff=isPastCutoff(date, time);
@@ -1587,14 +1588,14 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 </script>
 
 <script>
-// Hero slideshow (3 photos, auto-rotate every 3s)
+// Hero slideshow (3 photos, auto-rotate every 5s)
 (function(){
   const box=document.getElementById('hero-slideshow'); if(!box) return;
   const slides=[...box.querySelectorAll('.hero-slide')], dots=document.getElementById('hero-dots');
   let i=0, timer;
   slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Photo '+(n+1));b.onclick=()=>{show(n);restart();};dots.appendChild(b);});
   function show(n){i=n;slides.forEach((s,k)=>s.classList.toggle('active',k===n));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===n));}
-  function restart(){clearInterval(timer);timer=setInterval(()=>show((i+1)%slides.length),3000);}
+  function restart(){clearInterval(timer);timer=setInterval(()=>show((i+1)%slides.length),5000);}
   show(0);restart();
 })();
 </script>
@@ -1609,7 +1610,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 <script>
 // Lightbox: 원본 비율 그대로 보기 (사진 클릭)
 (function(){
-  const FULL=[window.matchMedia('(max-width:768px)').matches?'photo-mobile.jpg':'photo-extra-desktop.jpg','photo-mirror.jpg','photo-barrel.jpg',window.matchMedia('(max-width:768px)').matches?'photo-extra-mobile.jpg':'photo-view.jpg'];
+  const FULL=['photo-view.jpg','photo-mirror.jpg','photo-barrel.jpg'];
   const lb=document.getElementById('lb'), im=document.getElementById('lb-img'), cnt=document.getElementById('lb-c');
   let i=0;
   function show(n){i=(n+FULL.length)%FULL.length;im.src=FULL[i];cnt.textContent=(i+1)+' / '+FULL.length;}
