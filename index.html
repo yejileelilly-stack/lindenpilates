@@ -432,6 +432,12 @@ footer{background:var(--taupe);padding:56px 56px;display:flex;flex-direction:col
   .adm-grid{grid-template-columns:1fr;}
   .adm-panel{padding:60px 24px;}
 }
+.pack-box{border:1px solid var(--border);background:var(--cream);padding:24px;margin-bottom:36px;}
+.pack-terms{background:var(--white);border:1px solid var(--border);padding:16px 18px;max-height:240px;overflow-y:auto;font-size:12.5px;color:var(--soft);line-height:1.9;margin-bottom:16px;}
+.pack-terms ol{padding-left:18px;}.pack-terms li{margin-bottom:6px;}
+.sig-wrap{background:#fff;border:1.5px dashed var(--border);margin:8px 0 6px;}
+#pack-sig{display:block;width:100%;height:140px;touch-action:none;cursor:crosshair;}
+.pack-chk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--soft);margin-bottom:14px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -635,6 +641,42 @@ const WHATSAPP_NUMBER = '6589917223';  // 스튜디오 WhatsApp 번호 (알림 �
       <div class="dash-card-lbl">Total sessions</div>
       <div class="dash-card-val" id="dash-total">—</div>
       <div class="dash-card-sub">Sessions completed</div>
+    </div>
+  </div>
+  <div class="dash-section-title">Purchase a Pack</div>
+  <div class="pack-box" id="pack-box">
+    <div id="pack-start">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);">10-Session Pack · $1,200</div>
+      <div style="font-size:12px;color:var(--muted);margin:4px 0 16px;">10 × 50 min private sessions · $120 / session</div>
+      <button class="b-confirm" onclick="packOpen()">Purchase Pack</button>
+    </div>
+    <div id="pack-terms-wrap" style="display:none;">
+      <div class="pack-terms">
+        <strong>Member Terms — 10-Session Pack</strong>
+        <ol>
+          <li>The pack includes 10 private sessions (50 min each) for $1,200.</li>
+          <li>The pack is designed to be used at about <strong>one session per week</strong>, and is used up as sessions are completed.</li>
+          <li>If you are travelling or unwell, please tell me in advance. I will extend your pack at my discretion.</li>
+          <li>Sessions are booked by midnight the day before. Cancellations under 24 hours, or no-shows, count as a used session.</li>
+          <li>The pack is for the named member only and cannot be transferred.</li>
+          <li>I have told my instructor about any injury, pregnancy or medical condition, and will update her if anything changes. I take part at my own risk and will stop if I feel pain.</li>
+        </ol>
+      </div>
+      <label class="pack-chk"><input type="checkbox" id="pack-agree" style="margin-top:4px;"><span>I have read and agree to the Member Terms above.</span></label>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--taupe);">Sign below</div>
+      <div class="sig-wrap"><canvas id="pack-sig"></canvas></div>
+      <div style="text-align:right;margin-bottom:16px;"><button class="b-back" onclick="sigInit()">Clear</button></div>
+      <div class="btn-row"><button class="b-back" onclick="packClose()">Cancel</button><button class="b-confirm" id="btn-pack" onclick="packSubmit()">Agree &amp; Continue to Payment</button></div>
+    </div>
+    <div id="pack-pay-wrap" style="display:none;">
+      <div class="pn-sec">
+        <div class="pn-lbl">Pay $1,200 via PayNow · Singapore</div>
+        <div class="pn-qr" id="pack-qr"></div>
+        <div class="pn-num">+65 9614 1012</div>
+        <div class="pn-hint">Scan with any Singapore banking app<br>Amount &amp; reference pre-filled</div>
+      </div>
+      <div class="pay-note"><p>Your agreement has been saved. Please complete the PayNow transfer above. Once payment is received, I will confirm via WhatsApp.<br><br>Reference: <strong id="pack-ref">—</strong></p></div>
+      <button class="b-confirm" onclick="packClose()">Done</button>
     </div>
   </div>
   <div class="dash-section-title">Upcoming &amp; Recent Bookings</div>
@@ -1018,6 +1060,39 @@ async function loadUserProfile(profile) {
   document.getElementById('dash-sessions-detail').textContent = remaining + ' sessions remaining';
   if (typeof memberInitCal === 'function') memberInitCal();
   loadDashboardBookings();
+}
+
+// ── 10회권 구매 (약관 + 서명 + PayNow QR) ──────────────────────────────────
+let packSigned=false;
+function packShow(id){['pack-start','pack-terms-wrap','pack-pay-wrap'].forEach(k=>document.getElementById(k).style.display=(k===id?'':'none'));}
+function packOpen(){ packShow('pack-terms-wrap'); document.getElementById('pack-agree').checked=false; sigInit(); }
+function packClose(){ packShow('pack-start'); }
+function sigInit(){
+  const c=document.getElementById('pack-sig'); const w=c.parentElement.clientWidth||320;
+  c.width=w; c.height=140; packSigned=false;
+  const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,w,140);
+  x.lineWidth=2; x.lineCap='round'; x.lineJoin='round'; x.strokeStyle='#222';
+  let d=false; const pt=e=>{const r=c.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];};
+  c.onpointerdown=e=>{d=true;c.setPointerCapture(e.pointerId);x.beginPath();x.moveTo(...pt(e));e.preventDefault();};
+  c.onpointermove=e=>{if(!d)return;x.lineTo(...pt(e));x.stroke();packSigned=true;};
+  c.onpointerup=c.onpointercancel=()=>{d=false;};
+}
+async function packSubmit(){
+  if(!currentUser) return;
+  if(!document.getElementById('pack-agree').checked){alert('Please tick the agreement box.');return;}
+  if(!packSigned){alert('Please sign in the box.');return;}
+  if(isSubmitting) return; isSubmitting=true;
+  const btn=document.getElementById('btn-pack'); btn.disabled=true; btn.textContent='Saving…';
+  const ref='YP-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  let r;
+  try{ r=await gasCall({action:'purchase',pin:currentUser.pin,reference:ref,plan:'10-Session Pack',signature:document.getElementById('pack-sig').toDataURL('image/png')}); }catch(e){}
+  isSubmitting=false; btn.disabled=false; btn.textContent='Agree & Continue to Payment';
+  if(!r||!r.ok){ alert(r&&r.error?r.error:'Something went wrong. Please try again.'); return; }
+  document.getElementById('pack-ref').textContent=ref;
+  const q=document.getElementById('pack-qr'); q.innerHTML='';
+  try{ new QRCode(q,{text:buildQRData(CFG.paynowNumber,'1200',ref),width:172,height:172,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M}); }
+  catch(e){ q.innerHTML='<div style="width:172px;height:172px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);text-align:center;">Scan PayNow<br>+65 9614 1012</div>'; }
+  packShow('pack-pay-wrap');
 }
 
 // 서버에서 받은 최신 남은 횟수를 화면/저장값에 반영
